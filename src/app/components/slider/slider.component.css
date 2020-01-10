@@ -1,0 +1,61 @@
+.slider {
+
+  height: 886px;
+  background: #000;
+}
+
+img .slider {
+  left: 163px;
+}
+.photo {
+  float: right;
+
+}
+.heading {
+  color: #FFFFFF;
+  position: absolute;
+  width: 433px;
+  height: 69px;
+  left: 248px;
+  top: 287px;
+
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 60px;
+
+  /* identical to box height */
+  text-align: center;
+}
+
+.advantages {
+  position: absolute;
+  width: 317px;
+  height: 140px;
+  left: 345px;
+  top: 388px;
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 1.5em;
+
+  /* or 175% */
+  list-style-type: none;
+  color: #FFFFFF;
+}
+
+.btn {
+  position: absolute;
+  width: 151px;
+  height: 50px;
+  left: 345px;
+  top: 568px;
+  background-color: #107C10;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 6px;
+
+}
