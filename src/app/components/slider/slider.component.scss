@@ -1,61 +1,45 @@
 .slider {
+  display: flex;
+  flex-direction: row;
+  padding: 100px 100px 250px 100px;
+  background-image: url(/assets/xbox.png) repeat-y;; /* Путь к фоновому изображению */
+  background-color: black;
+  justify-content: space-around;
 
-  height: 886px;
-  background: #000;
 }
 
-img .slider {
-  left: 163px;
+img {
+  height: 360px;
 }
 .photo {
-  float: right;
-
-}
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  }
 .heading {
   color: #FFFFFF;
-  position: absolute;
-  width: 433px;
-  height: 69px;
-  left: 248px;
-  top: 287px;
-
-  font-family: Ubuntu;
-  font-style: normal;
   font-weight: bold;
   font-size: 60px;
-
-  /* identical to box height */
   text-align: center;
+}
+h1 {
+  font-size: 80px;
+  color: #FFFFFF;
 }
 
 .advantages {
-  position: absolute;
-  width: 317px;
-  height: 140px;
-  left: 345px;
-  top: 388px;
-  font-family: Ubuntu;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  justify-items: center;
 
-  /* or 175% */
-  list-style-type: none;
-  color: #FFFFFF;
+
 }
 
-.btn {
-  position: absolute;
-  width: 151px;
-  height: 50px;
-  left: 345px;
-  top: 568px;
-  background-color: #107C10;
-  border: none;
-  color: white;
-  font-weight: bold;
+li {
+  list-style-type: none;
+  line-height: 40px;
+  color: #FFFFFF;
   font-size: 20px;
-  border-radius: 6px;
 
 }

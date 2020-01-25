@@ -1,61 +1,66 @@
-header {
-  height: 98px;
-  background-color: black;
-}
 .container {
   width: 100%;
-  max-width: 1024px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-li {
-  padding: 1px;
-  margin-right: 70px;
-  font-family: Ubuntu;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-
-}
-
-.logo {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  left: 150px;
-
-}
-
-.cart {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  right: 150px;
-  top: 40px;
-}
-.search {
-  position: absolute;
-  width: 23px;
-  height: 23px;
-  right: 255px;
-  top: 40px;
-}
-p {
-  position: absolute;
+  display: flex;
+  background-color: black;
   color: white;
-  left: 202px;
-  font-family: Ubuntu;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
+  justify-content: space-between;
+  padding: 10px;
+}
 
+a {
+  text-decoration: none; /* Отменяем подчеркивание у ссылки */
+  color: white;
+  padding: 40px;
+
+}
+
+
+
+ a:hover {
+  color: #107C10;
+
+}
+.logo {
+  display: flex;
+  align-items: center;
+  padding-left: 150px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.logo-text {
+  font-size: 20px;
+  margin-left: 20px;
+  font-family: Ubuntu;
 }
 .menu {
+  display: flex;
+  font-size: 20px;
 
-  color: #FFFFFF;
 }
-nav li {
-  display: inline-block; /*один из способов разместить элементы в строку*/
+.cart {
+  display: flex;
+  padding-left: 50px;
+  padding-right: 150px;
+}
+
+.side-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.search {
+}
+
+.search-text {
+  display: flex;
+  font-size: 20px;
+}
+
+.side-nav img {
+  height: 30px;
+  margin: 0 20px;
 }
 
