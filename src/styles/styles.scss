@@ -13,3 +13,9 @@
   filter: contrast(200);
   cursor: pointer;
 }
+
+.carousel-control {
+  &:hover {
+    cursor: pointer;
+  }
+}
