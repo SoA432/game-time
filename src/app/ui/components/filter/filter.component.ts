@@ -39,7 +39,7 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  private handleClickOutsideDropdown(e) {
+  public handleClickOutsideDropdown(e) {
     if (!this._eref.nativeElement.contains(e.target) && this.isAbsolute) {
       this.isFilterOpened = false;
     }
