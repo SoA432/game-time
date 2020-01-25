@@ -12,6 +12,7 @@ import { SubComponent } from './ui/components/sub/sub.component';
 import {RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './ui/pages/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   {
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

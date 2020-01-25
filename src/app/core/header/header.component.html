@@ -1,23 +1,19 @@
 <header>
-  <div class="container">
-    <div class="logo">
-      <img src="/assets/logo.svg" alt="">
-      <p class="logo-text">Game Planet</p>
+  <div class="row header-wrap">
+    <div class="col-6">
+      <div class="logo" routerLink="/">
+        <img src="assets/icons/logo.svg" alt="">
+        <p class="logo-title">Game Time</p>
+      </div>
     </div>
-    <nav class="menu">
-      <a href="">Подписки</a>
-      <a href="">Игры</a>
-      <a href="">Устройства</a>
-      <a href="">Xbox</a>
-      <a href="">Поддержка</a>
-    </nav>
-
-    <div class="side-nav">
-      <img src="/assets/search.svg" alt="" class="search">
-      <p class="search-text">Поиск</p>
-      <img src="/assets/shopping-cart.svg" alt="" class="cart">
+    <div class="col-6 side-nav">
+      <div class="search">
+        <input type="text" [hidden]="isSearchHidden" (blur)="showSearch()" #search [formControl]="searchControl">
+        <img src="assets/icons/search.svg" alt="" class="navigation-icon" (click)="showSearch()">
+      </div>
+      <div class="cart">
+        <img src="assets/icons/shopping-cart.svg" alt="" class="navigation-icon">
+      </div>
     </div>
   </div>
-
-
 </header>

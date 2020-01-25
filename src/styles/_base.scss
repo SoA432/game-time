@@ -1,11 +1,19 @@
 * {
   box-sizing: border-box;
+  &:focus {
+    outline: 0;
+  }
 }
 
 html,
 body {
   height: auto;
   margin: 0;
+}
+
+label, p {
+  margin: 0;
+  padding: 0;
 }
 
 input {
