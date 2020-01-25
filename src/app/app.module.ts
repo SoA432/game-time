@@ -2,15 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { GamePlanetComponent } from './components/game-planet/game-planet.component';
-import { HeaderComponent } from './components/header/header.component';
-import { SliderComponent } from './components/slider/slider.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { ItemComponent } from './components/item/item.component';
-import { SubComponent } from './components/sub/sub.component';
+import { GamePlanetComponent } from './ui/components/game-planet/game-planet.component';
+import { HeaderComponent } from './core/header/header.component';
+import { SliderComponent } from './ui/components/slider/slider.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { MenuComponent } from './ui/components/menu/menu.component';
+import { ItemComponent } from './ui/components/item/item.component';
+import { SubComponent } from './ui/components/sub/sub.component';
 import {RouterModule, Routes} from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './ui/pages/home/home.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 const appRoutes: Routes = [
   {
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
