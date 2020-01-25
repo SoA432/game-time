@@ -1,0 +1,63 @@
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  a {
+    padding: 30px;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
+.menu-vertical {
+  display: flex;
+  flex-direction: column;
+  a {
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
+.horizontal-filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  span {
+    font-size: 16px;
+  }
+}
+
+.settings {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.games-content {
+  display: flex;
+  flex-direction: column;
+}
+
+app-filter {
+  min-width: 150px;
+  width: 200px;
+}
+
+.single-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    margin-right: 10px;
+  }
+  app-filter {
+    width: auto;
+  }
+}

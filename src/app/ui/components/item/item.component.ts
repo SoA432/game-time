@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ItemComponent implements OnInit {
   mockData = {
-      imageSrc: '/assets/witcher.jpg',
+      imageSrc: '/assets/images/witcher3.png',
       title: 'The Witcher 3: Wild Hunt',
       price: '15'
     };

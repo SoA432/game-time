@@ -1,5 +1,44 @@
 <app-slider></app-slider>
-<!--<app-slider></app-slider>-->
-<!--<app-slider></app-slider>-->
-<!--<app-slider></app-slider>-->
-<!--<app-menu></app-menu>-->
+
+
+<div class="content">
+  <div>
+    <div class="menu-horizontal">
+      <a href="#">Игры</a>
+      <a href="#">Cкоро в продаже</a>
+      <a href="#">Подписки</a>
+      <a href="#">Распродажа</a>
+    </div>
+  </div>
+  <div class="games-content">
+<!--    <div class="menu-vertical">-->
+<!--      <a href="">Фильтры</a>-->
+<!--      <a href="">Жанры</a>-->
+<!--      <a href="">Совместимые</a>-->
+<!--      <a href="">На двоих</a>-->
+<!--    </div>-->
+    <div class="row">
+      <aside class="side-filters col-3">
+        <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
+        <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
+        <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
+      </aside>
+
+      <main class="main-content col-9">
+        <div class="horizontal-filters">
+          <div class="single-filter">
+            <span>Сортировать :</span>
+            <app-filter [title]="'test filter'" [filterList]="filterList" [isAbsolute]="true"></app-filter>
+          </div>
+          <div class="single-filter">
+            <span>Валюта:</span>
+            <app-filter [title]="'test filter'" [filterList]="filterList" [isAbsolute]="true"></app-filter>
+          </div>
+        </div>
+<!--        todo refactor app-item-->
+        <app-item></app-item>
+      </main>
+    </div>
+  </div>
+</div>
+

@@ -7,7 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public filterList = [
+    {
+      name: 'action',
+      active: false,
+    },
+    {
+      name: 'fighting',
+      active: false,
+    },
+    {
+      name: 'indie',
+      active: false,
+    },
+    {
+      name: 'shooter',
+      active: false,
+    },
+    {
+      name: 'rpg',
+      active: false,
+    }
+  ];
+  constructor() {
+  }
 
   ngOnInit() {
   }
