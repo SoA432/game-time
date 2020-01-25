@@ -1,33 +1,26 @@
-.footer {
+@import "../../../styles/variables";
+
+footer {
   display: flex;
   flex-direction: row;
-  height: 230px;
-  background-color: #E5E5E5;
+  background-color: $footer-background;
+  color: $footer-text;
   justify-content: space-around;
-}
-.menu-footer {
-  font-size: 20px;
-}
-
-.footer-text {
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
 }
 
-.social-network  {
+.social-network, .copyright {
   display: flex;
   justify-content: center;
-  align-items: center;
-
+  width: 100%;
+  font-size: $text-small;
+  img {
+    width: 20px;
+    margin: 10px;
+  }
 }
 
-.social-network img {
-  height: 30px;
-  margin: 0 20px;
-}
-
-li {
-  list-style: none;
-  line-height: 35px;
+.social-network {
+  margin-bottom: 20px;
 }
