@@ -22,7 +22,7 @@ export class FilterComponent implements OnInit {
   @Input() title: string;
   @Input() filterList: Array<{name: string, active: boolean}>;
   @Input() isAbsolute: boolean = false;
-  private isFilterOpened: boolean = false;
+  public isFilterOpened: boolean = false;
   constructor(private _eref: ElementRef) { }
 
   ngOnInit() {
