@@ -17,28 +17,26 @@
 <!--      <a href="">Совместимые</a>-->
 <!--      <a href="">На двоих</a>-->
 <!--    </div>-->
-    <div class="row">
-      <aside class="side-filters col-3">
-        <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
-        <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
-        <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
-      </aside>
+    <aside class="side-filters col-3">
+      <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
+      <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
+      <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
+    </aside>
 
-      <main class="main-content col-9">
-        <div class="horizontal-filters">
-          <div class="single-filter">
-            <span>Сортировать :</span>
-            <app-filter [title]="'test filter'" [filterList]="filterList" [isAbsolute]="true"></app-filter>
-          </div>
-          <div class="single-filter">
-            <span>Валюта:</span>
-            <app-filter [title]="'test filter'" [filterList]="filterList" [isAbsolute]="true"></app-filter>
-          </div>
+    <main class="main-content col-9">
+      <div class="horizontal-filters">
+        <div class="single-filter">
+          <span>Сортировать :</span>
+          <app-filter [title]="'test filter'" [filterList]="filterList" [isAbsolute]="true"></app-filter>
         </div>
-<!--        todo refactor app-item-->
-        <app-item></app-item>
-      </main>
-    </div>
+        <div class="single-filter">
+          <span>Валюта:</span>
+          <app-filter [title]="'test filter'" [filterList]="filterList" [isAbsolute]="true"></app-filter>
+        </div>
+      </div>
+      <!--        todo refactor app-item-->
+              <app-item></app-item>
+    </main>
   </div>
 </div>
 
