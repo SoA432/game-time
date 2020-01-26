@@ -23,6 +23,7 @@ export class FilterComponent implements OnInit {
   @Input() filterList: Array<{name: string, active: boolean}>;
   @Input() isAbsolute: boolean = false;
   public isFilterOpened: boolean = false;
+  public activeFilter: string = '';
   constructor(private _eref: ElementRef) { }
 
   ngOnInit() {
@@ -33,10 +34,12 @@ export class FilterComponent implements OnInit {
   }
 
   public selectFilter(filter: {name: string, active: boolean}) {
-    filter.active = !filter.active;
     if (this.isAbsolute) {
       this.openFilter();
+      this.filterList.forEach(filter => filter.active = false);
+      this.activeFilter = filter.name;
     }
+    filter.active = !filter.active;
   }
 
   public handleClickOutsideDropdown(e) {
