@@ -1,5 +1,34 @@
 <app-slider></app-slider>
-<!--<app-slider></app-slider>-->
-<!--<app-slider></app-slider>-->
-<!--<app-slider></app-slider>-->
-<!--<app-menu></app-menu>-->
+
+<div class="content">
+  <div>
+    <div class="menu-horizontal">
+      <a href="#">Игры</a>
+      <a href="#">Cкоро в продаже</a>
+      <a href="#">Подписки</a>
+      <a href="#">Распродажа</a>
+    </div>
+  </div>
+  <div class="games-content">
+    <aside class="side-filters col-3">
+      <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
+      <app-filter [title]="'test filter'" [filterList]="filterList2"></app-filter>
+      <app-filter [title]="'test filter'" [filterList]="filterList3"></app-filter>
+    </aside>
+
+    <main class="main-content col-9">
+      <div class="horizontal-filters">
+        <div class="single-filter">
+          <span>Сортировать:</span>
+          <app-filter [title]="'test filter'" [filterList]="filterList4" [isAbsolute]="true"></app-filter>
+        </div>
+        <div class="single-filter">
+          <span>Валюта:</span>
+          <app-filter [title]="'test filter'" [filterList]="filterList5" [isAbsolute]="true"></app-filter>
+        </div>
+      </div>
+<!--              <app-item></app-item>-->
+    </main>
+  </div>
+</div>
+
