@@ -1,23 +1,19 @@
 @import "_variables";
 
-html, body {
-  //background: $color-black;
+body {
+  font-size: $text-medium;
 }
 
 .btn-green {
-  padding: 15px 30px;
-  background-color: green;
-  border: none;
-  color: white;
+  background-color: $btn-green;
+  color: $color-white;
   border-radius: 6px;
-  font-size: 23px;
-  font-weight: bold;
-  width: 200px;
-}
-
-.btn-green:hover {
-  filter: contrast(200);
-  cursor: pointer;
+  font-size: $text-medium;
+  padding: 5px 10px;
+  //&:hover {
+  //  cursor: pointer;
+  //  filter: drop-shadow(0 0 4px green);
+  //}
 }
 
 .carousel-control {

@@ -1,3 +1,5 @@
+@import "../../../../styles/variables";
+
 .content {
   display: flex;
   flex-direction: column;
@@ -11,7 +13,7 @@
     padding: 30px;
     color: black;
     font-weight: bold;
-    font-size: 20px;
+    font-size: $text-big;
   }
 }
 
@@ -21,7 +23,7 @@
   a {
     color: black;
     font-weight: bold;
-    font-size: 16px;
+    font-size: $text-medium;
   }
 }
 
@@ -30,7 +32,7 @@
   flex-direction: row;
   justify-content: space-around;
   span {
-    font-size: 16px;
+    font-size: $text-medium;
   }
 }
 
@@ -42,11 +44,6 @@
 
 .games-content {
   display: flex;
-}
-
-app-filter {
-  min-width: 150px;
-  width: 200px;
 }
 
 .single-filter {
@@ -68,4 +65,12 @@ app-filter {
   app-filter {
     margin-bottom: 20px;
   }
+}
+
+.cards-wrapper {
+  padding: 15px;
+}
+
+app-game-card {
+  padding: 10px 5px;
 }

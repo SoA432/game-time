@@ -27,7 +27,12 @@
           <app-filter [title]="'test filter'" [filterList]="filterList5" [isAbsolute]="true"></app-filter>
         </div>
       </div>
-<!--              <app-item></app-item>-->
+      <div class="cards-wrapper row">
+        <app-game-card
+          class="col-sm-4"
+          *ngFor="let items of [1,2,3,4,5,6,7,8,9]">
+        </app-game-card>
+      </div>
     </main>
   </div>
 </div>
