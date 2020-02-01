@@ -1,0 +1,68 @@
+<app-slider></app-slider>
+<div class="details-page-wrapper">
+  <div class="short-info">
+    <div class="row">
+      <div class="col-4">Сведения об игре:</div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <p>Издатель: </p>
+        <p>Calypso media group</p>
+      </div>
+      <div class="col-2">
+        <p>Издатель: </p>
+        <p>Calypso media group</p>
+      </div>
+      <div class="col-2">
+        <p>Издатель: </p>
+        <p>Calypso media group</p>
+      </div>
+      <div class="col-2">
+        <p>Издатель: </p>
+        <p>Calypso media group</p>
+      </div>
+      <div class="col-2">
+        <p>Издатель: </p>
+        <p>Calypso media group</p>
+      </div>
+      <div class="col-2">
+        <p>Издатель: </p>
+        <p>Calypso media group</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="game-info row">
+    <aside class="side-filters col-3">
+      <div>Описание</div>
+      <div>Требования</div>
+      <div>Отзывы</div>
+    </aside>
+
+    <main class="main-content col-9">
+      <h1>{{mockGame.title}}</h1>
+      <p>{{mockGame.shortDescription}}</p>
+      <span>Рейтинг: {{mockGame.score}}</span>
+      <span>{{mockGame.rating}}</span>
+      <span>Цена: {{mockGame.price}}</span>
+      <span>Играть позже</span>
+      <button>Купить</button>
+      <h2>Описание:</h2>
+      <p>{{mockGame.description}}</p>
+    </main>
+  </div>
+  <div class="recommendations col-9">
+    <carousel [itemsPerSlide]="4"
+              [singleSlideOffset]="true"
+              [showIndicators]="false"
+              [noWrap]="false">
+      <slide *ngFor="let slide of [1,2,3,4,5,6,7]; let index=index">
+        <img src="/assets/images/ori.jpg" alt="">
+<!--        <img [src]="slide.image" alt="image slide" style="display: block; width: 100%;">-->
+        <div class="carousel-caption">
+          <h4>Slide {{index}}</h4>
+        </div>
+      </slide>
+    </carousel>
+  </div>
+</div>

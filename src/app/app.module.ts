@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FilterComponent } from './ui/components/filter/filter.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { GameDetailPageComponent } from './ui/pages/game-detail-page/game-detail-page.component';
 
 
 
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
     FooterComponent,
     GameCardComponent,
     HomeComponent,
-    FilterComponent
+    FilterComponent,
+    GameDetailPageComponent
   ],
   imports: [
     BrowserModule,
