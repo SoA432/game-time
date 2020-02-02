@@ -9,6 +9,10 @@
 }
 
 .recommendations {
+  img {
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
   .carousel-control-prev-icon {
     background-image: url('/assets/icons/slider-prev.svg');
     width: 50px;
@@ -21,9 +25,21 @@
   }
 
   .carousel-control-prev {
-    left: -12%;
+    left: -10%;
   }
   .carousel-control-next {
-    right: -12%;
+    right: -10%;
+  }
+
+  .slide-description {
+    font-size: $text-semi-big;
+    .slide-title {
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .slide-price {
+      font-weight: 500;
+    }
   }
 }

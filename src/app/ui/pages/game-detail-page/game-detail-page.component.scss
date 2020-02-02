@@ -1,3 +1,17 @@
+@import "../../../../styles/variables";
+
+.details-page-wrapper {
+  margin: 0 5%;
+}
+
+.short-info-title {
+  padding: 30px 0 20px 0;
+}
+
+.top-info {
+  margin-bottom: 50px;
+}
+
 slide {
   img {
     width: 100%;
@@ -10,4 +24,106 @@ slide {
 
 .recommendations {
   margin: 0 auto;
+}
+
+.side-filters {
+  div {
+    padding: 10px 0;
+    border-radius: 6px;
+    display: flex;
+    color: $color-black;
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+    margin: 15px auto;
+    &.active {
+      background: $color-green;
+      color: $color-white;
+      box-shadow: 2px 2px 6px -1px $color-green;
+    }
+    &:hover {
+      cursor: pointer;
+      box-shadow: 2px 2px 6px -1px $color-green;
+    }
+  }
+}
+
+.detail-info-block {
+  display: flex;
+  flex-direction: column;
+  .genre {
+    font-weight: 500;
+  }
+}
+
+.price-block {
+  display: flex;
+  flex-direction: column;
+  .btn-green {
+    width: 100px;
+    margin-top: 10px;
+  }
+  .price {
+    font-size: $text-very-big;
+    font-weight: bold;
+  }
+}
+
+.game-description {
+  margin-top: 20px;
+  font-size: $text-semi-big;
+  text-align: justify;
+}
+
+.horizontal-filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  .single-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.comment-block {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  padding: 20px;
+  margin: 20px;
+  .avatar-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $color-black;
+    color: $color-white;
+    border-radius: 50%;
+  }
+  .nickname {
+    margin: 5px;
+  }
+
+  .text-block {
+    .comment-title {
+      font-size: $text-semi-big2;
+      font-weight: 500;
+    }
+    .comment-description {
+      margin-top: 10px;
+      font-size: $text-medium;
+    }
+  }
+
+  .comment-date {
+    color: $color-gray
+  }
 }

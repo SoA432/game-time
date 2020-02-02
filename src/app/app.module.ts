@@ -7,11 +7,14 @@ import { FooterComponent } from './core/footer/footer.component';
 import { GameCardComponent } from './ui/components/game-card/game-card.component';
 import { HomeComponent } from './ui/pages/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterComponent } from './ui/components/filter/filter.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { GameDetailPageComponent } from './ui/pages/game-detail-page/game-detail-page.component';
+import { RatingComponent } from './ui/components/rating/rating.component';
+import { RatingModule } from 'ngx-bootstrap/rating';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -24,14 +27,18 @@ import { GameDetailPageComponent } from './ui/pages/game-detail-page/game-detail
     GameCardComponent,
     HomeComponent,
     FilterComponent,
-    GameDetailPageComponent
+    GameDetailPageComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CarouselModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RatingModule.forRoot(),
+    NgbRatingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

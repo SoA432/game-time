@@ -1,10 +1,10 @@
 <app-slider></app-slider>
 <div class="details-page-wrapper">
   <div class="short-info">
-    <div class="row">
+    <div class="row short-info-title">
       <div class="col-4">Сведения об игре:</div>
     </div>
-    <div class="row">
+    <div class="row top-info">
       <div class="col-2">
         <p>Издатель: </p>
         <p>Calypso media group</p>
@@ -33,34 +33,93 @@
   </div>
 
   <div class="game-info row">
-    <aside class="side-filters col-3">
-      <div>Описание</div>
-      <div>Требования</div>
-      <div>Отзывы</div>
-    </aside>
+    <div class="side-filters col-3">
+      <div [ngClass]="{'active': activeTab === 1}" (click)="activateTab(1)">Описание</div>
+      <div [ngClass]="{'active': activeTab === 2}" (click)="activateTab(2)">Требования</div>
+      <div [ngClass]="{'active': activeTab === 3}" (click)="activateTab(3)">Отзывы</div>
+    </div>
 
-    <main class="main-content col-9">
-      <h1>{{mockGame.title}}</h1>
-      <p>{{mockGame.shortDescription}}</p>
-      <span>Рейтинг: {{mockGame.score}}</span>
-      <span>{{mockGame.rating}}</span>
-      <span>Цена: {{mockGame.price}}</span>
-      <span>Играть позже</span>
-      <button>Купить</button>
-      <h2>Описание:</h2>
-      <p>{{mockGame.description}}</p>
-    </main>
+    <!--description part-->
+    <div class="main-content col-9" *ngIf="activeTab === 1">
+      <div class="row">
+        <div class="col-9 detail-info-block">
+          <h1>{{mockGame.title}}</h1>
+          <span>Жанр: <span class="genre">{{mockGame.genre}}</span></span>
+          <span>Рейтинг: <app-rating [rate]="mockGame.rating" [readonly]="true"></app-rating></span>
+        </div>
+        <div class="col-3 price-block">
+          <span>Цена: <span class="price">{{mockGame.price}}</span></span>
+          <button class="btn-green">КУПИТЬ</button>
+        </div>
+      </div>
+      <div class="row game-description">
+        <div class="col-12">
+          <p>{{mockGame.description}}</p>
+        </div>
+      </div>
+    </div>
+    <!--requirements part-->
+    <div class="main-content col-9" *ngIf="activeTab === 2">
+      <div class="row">
+        <div class="requirement-title col-12">Рекомендованые</div>
+        <div class="sub-requirement-title col-12">
+          Устройство должно соответствовать этим требованиям для наилучшей работы:
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div>OC</div>
+          <div>Архитектура</div>
+        </div>
+        <div class="col-4">
+          <div>Xbox One</div>
+          <div>х64</div>
+        </div>
+      </div>
+    </div>
+    <!--comments part-->
+    <div class="main-content col-9" *ngIf="activeTab === 3">
+      <div class="horizontal-filters">
+        <div class="single-filter">
+          <span>Сортировать по:</span>
+          <app-filter [title]="'test filter'" [filterList]="[{name: 'action111',active: false}]" [isAbsolute]="true"></app-filter>
+        </div>
+        <div class="single-filter">
+          <span>Фильтровать по:</span>
+          <app-filter [title]="'test filter'" [filterList]="[{name: 'svsavsav',active: false}]" [isAbsolute]="true"></app-filter>
+        </div>
+      </div>
+      <div class="comment-block" *ngFor="let comment of [1,2,3,4]">
+        <div class="row">
+          <div class="col-3 avatar-block">
+            <div class="avatar">Я</div>
+            <div class="nickname">Ярослав</div>
+          </div>
+          <div class="col-7 text-block">
+            <div class="comment-title">Super!</div>
+            <div class="comment-description">Игра очень понравилась! Геймплей затягивает, графика супер,
+              да и сеттинг, основанный на скандинавской мифологии, шикарен. Любителям дьябло рекомендую.
+            </div>
+          </div>
+          <div class="col-2 date-block">
+            <div class="comment-date">01.02.2020</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="recommendations col-9">
+
+  <div class="recommendations col-12">
     <carousel [itemsPerSlide]="4"
               [singleSlideOffset]="true"
               [showIndicators]="false"
               [noWrap]="false">
-      <slide *ngFor="let slide of [1,2,3,4,5,6,7]; let index=index">
+      <slide *ngFor="let slide of [1,2,3,4]; let index=index">
         <img src="/assets/images/ori.jpg" alt="">
-<!--        <img [src]="slide.image" alt="image slide" style="display: block; width: 100%;">-->
-        <div class="carousel-caption">
-          <h4>Slide {{index}}</h4>
+        <div class="slide-description">
+          <div class="slide-title">GameName {{index}}</div>
+          <app-rating [rate]="mockGame.rating" [readonly]="true"></app-rating>
+          <div class="slide-price">29.99$</div>
         </div>
       </slide>
     </carousel>
