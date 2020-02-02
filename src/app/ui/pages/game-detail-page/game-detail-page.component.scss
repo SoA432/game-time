@@ -55,7 +55,7 @@ slide {
   display: flex;
   flex-direction: column;
   .genre {
-    font-weight: 500;
+    font-weight: bold;
   }
 }
 
@@ -118,7 +118,7 @@ slide {
   .text-block {
     .comment-title {
       font-size: $text-semi-big2;
-      font-weight: 500;
+      font-weight: bold;
     }
     .comment-description {
       margin-top: 10px;
