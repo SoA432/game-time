@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './ui/pages/home/home.component';
+import { GameDetailPageComponent } from './ui/pages/game-detail-page/game-detail-page.component';
 
 
 const appRoutes: Routes = [
@@ -11,9 +12,13 @@ const appRoutes: Routes = [
     component: HomeComponent
   },
   {
+    path: 'detail/:id',
+    component: GameDetailPageComponent
+  },
+  {
     path: '**',
     component: HomeComponent
-  }
+  },
 ];
 /**
  * the AppRoutingModule contains the router-logic and describes all

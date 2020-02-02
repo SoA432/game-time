@@ -7,3 +7,39 @@
   //font-family: 'OpenSans-Regular';
   //src: url('../assets/fonts/OpenSans-Regular.ttf');
 }
+
+.recommendations {
+  img {
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  .carousel-control-prev-icon {
+    background-image: url('/assets/icons/slider-prev.svg');
+    width: 50px;
+    height: 50px;
+  }
+  .carousel-control-next-icon {
+    background-image: url('/assets/icons/slider-next.svg');
+    width: 50px;
+    height: 50px;
+  }
+
+  .carousel-control-prev {
+    left: -10%;
+  }
+  .carousel-control-next {
+    right: -10%;
+  }
+
+  .slide-description {
+    font-size: $text-semi-big;
+    .slide-title {
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .slide-price {
+      font-weight: 500;
+    }
+  }
+}
