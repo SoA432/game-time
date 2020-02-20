@@ -1,8 +1,10 @@
 // angular
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+// components
 import { HomeComponent } from './ui/pages/home/home.component';
 import { GameDetailPageComponent } from './ui/pages/game-detail-page/game-detail-page.component';
+import { ShoppingCartComponent } from './ui/pages/shopping-cart/shopping-cart.component';
 
 
 const appRoutes: Routes = [
@@ -14,6 +16,10 @@ const appRoutes: Routes = [
   {
     path: 'detail/:id',
     component: GameDetailPageComponent
+  },
+  {
+    path: 'shopping-cart',
+    component: ShoppingCartComponent
   },
   {
     path: '**',

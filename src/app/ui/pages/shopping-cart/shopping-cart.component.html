@@ -1,0 +1,41 @@
+<div class="cart-wrapper">
+  <div class="cart-wrapper-title row">
+    <div class="col-6">
+      <h1>Корзина</h1>
+    </div>
+    <div class="item-quantity col-6">
+      <span>Кол-во товаров: </span> {{this.shoppingCart.size}}
+    </div>
+  </div>
+  <div class="cart-main">
+    <div class="row">
+      <div class="col-4 title">Содержимое корзины</div>
+      <div class="col-3 title">Количество</div>
+      <div class="col-2 title">Цена</div>
+      <div class="col-3 title">Итого</div>
+    </div>
+    <div class="cart-content">
+      <div class="row" *ngFor="let item of [1,2,3,4]">
+        <div class="col-4 cart-block">
+          <img src="/assets/images/witcher3.png" alt="">
+          <div class="game-info">
+            <div>Vikings - Wolves of Midgard</div>
+            <div>xbox</div>
+            <button>Удалить</button>
+          </div>
+        </div>
+        <div class="col-3 cart-block">
+          <span (click)="incrementQuantity(item)">-</span>
+          <input type="number" step="1" min="0" (change)="onChange($event, item)" #input>
+          <span (click)="decrementQuantity(item)">+</span>
+        </div>
+        <div class="col-2 cart-block">
+          390 $
+        </div>
+        <div class="col-3 cart-block">
+          780 $
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

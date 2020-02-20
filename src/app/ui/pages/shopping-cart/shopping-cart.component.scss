@@ -1,0 +1,68 @@
+@import "../../../../styles/variables";
+
+.cart-wrapper {
+  padding-top: 70px;
+}
+
+.cart-wrapper-title {
+  margin: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid $color-light-gray;
+  h1 {
+    font-size: $text-max;
+  }
+
+  .item-quantity {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: $text-very-big;
+    span {
+      display: inline-flex;
+      align-items: center;
+      font-size: $text-medium;
+      color: $color-gray;
+      padding-right: 5px;
+    }
+  }
+}
+
+.cart-main {
+  margin: 40px;
+  .title {
+    font-size: $text-medium;
+    color: $color-gray;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+}
+
+.cart-content {
+  img {
+    width: 50%;
+    margin: 10px;
+    border-radius: 6px;
+  }
+  .row {
+    margin: 20px 0;
+  }
+  .cart-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .game-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 10px 0;
+    button {
+      width: 60px;
+    }
+  }
+  input {
+    width: 50px;
+  }
+}
