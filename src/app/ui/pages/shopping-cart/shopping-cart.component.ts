@@ -9,7 +9,7 @@ import { CartService } from '../../../core/services/cart.service';
 export class ShoppingCartComponent implements OnInit {
 
   shoppingCart:  Map<string, Object>;
-  @ViewChild('input', {static: false}) input: ElementRef;
+  @ViewChild('input') input: ElementRef;
   constructor(private cartService: CartService) {
   }
 
@@ -25,7 +25,7 @@ export class ShoppingCartComponent implements OnInit {
     console.log(this.input.nativeElement);
   }
 
-  public decrementQuantity() {
+  public decrementQuantity(item) {
     console.log(this.input.nativeElement);
   }
 }

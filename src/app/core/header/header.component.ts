@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, takeUntil, tap } from 'rxjs/operators';
@@ -8,12 +8,12 @@ import { debounceTime, distinctUntilChanged, filter, takeUntil, tap } from 'rxjs
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   public isSearchHidden = true;
   public searchControl: FormControl;
   private destroy$ = new Subject();
-  @ViewChild('search', {static: false}) search: ElementRef;
+  @ViewChild('search') search: ElementRef;
 
   constructor() {
   }
