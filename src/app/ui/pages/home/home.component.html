@@ -1,6 +1,6 @@
 <app-slider></app-slider>
 
-<div class="content">
+<div class="content container">
   <div>
     <div class="menu-horizontal">
       <a href="#">Игры</a>
@@ -29,9 +29,22 @@
       </div>
       <div class="cards-wrapper row">
         <app-game-card
-          class="col-sm-4"
-          *ngFor="let item of [{id: 1},{id: 2},{id: 3},{id: 4},{id: 5},{id: 6},{id: 7}]"
-          routerLink="detail/{{item.id}}">
+          class="col-xs-6 col-md-4"
+          *ngFor="let game of games"
+          [game]="game"
+          routerLink="detail/{{game.id}}">
+        </app-game-card>
+        <app-game-card
+          class="col-xs-6 col-md-4"
+          *ngFor="let game of games"
+          [game]="game"
+          routerLink="detail/{{game.id}}">
+        </app-game-card>
+        <app-game-card
+          class="col-xs-6 col-md-4"
+          *ngFor="let game of games"
+          [game]="game"
+          routerLink="detail/{{game.id}}">
         </app-game-card>
       </div>
     </main>

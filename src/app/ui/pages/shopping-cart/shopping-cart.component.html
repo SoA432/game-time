@@ -1,41 +1,57 @@
-<div class="cart-wrapper">
+<div class="cart-wrapper container">
   <div class="cart-wrapper-title row">
     <div class="col-6">
       <h1>Корзина</h1>
     </div>
     <div class="item-quantity col-6">
-      <span>Кол-во товаров: </span> {{this.shoppingCart.size}}
+      <span>Кол-во товаров: </span> {{cartService.totalItemsQuantity}}
     </div>
   </div>
-  <div class="cart-main">
+  <div class="cart-main" *ngIf="cartService.shoppingCart.length">
     <div class="row">
-      <div class="col-4 title">Содержимое корзины</div>
+      <div class="col-5 title">Содержимое корзины</div>
       <div class="col-3 title">Количество</div>
       <div class="col-2 title">Цена</div>
-      <div class="col-3 title">Итого</div>
+      <div class="col-2 title">Итого</div>
     </div>
     <div class="cart-content">
-      <div class="row" *ngFor="let item of [1,2,3,4]">
-        <div class="col-4 cart-block">
-          <img src="/assets/images/witcher3.png" alt="">
-          <div class="game-info">
-            <div>Vikings - Wolves of Midgard</div>
+      <div class="row" *ngFor="let item of cartService.shoppingCart">
+        <div class="col-5 cart-block">
+          <img [src]="item.game.imgSrc" alt="" class="col-6">
+          <div class="game-info col-6">
+            <div>{{ item.game.title }}</div>
             <div>xbox</div>
-            <button>Удалить</button>
+            <button class="btn btn-danger" (click)="removeItem(item)">Удалить</button>
           </div>
         </div>
         <div class="col-3 cart-block">
-          <span (click)="incrementQuantity(item)">-</span>
-          <input type="number" step="1" min="0" (change)="onChange($event, item)" #input>
-          <span (click)="decrementQuantity(item)">+</span>
+          <span (click)="decrementQuantity(item)">-</span>
+          <input type="number" step="1" min="0" [(ngModel)]="item.quantity" (ngModelChange)="onChange($event, item)">
+          <span (click)="incrementQuantity(item)">+</span>
         </div>
         <div class="col-2 cart-block">
-          390 $
+          {{ item.game.price }}$
         </div>
-        <div class="col-3 cart-block">
-          780 $
+        <div class="col-2 cart-block">
+          {{ item.game.price * item.quantity}}$
         </div>
       </div>
     </div>
   </div>
+  <div class="cart-footer row" *ngIf="cartService.shoppingCart.length">
+    <a routerLink="/" class="col-6 back-to-shop d-flex flex-column align-items-start">
+      < Вернуться в магазин
+    </a>
+    <div class="col-6 d-flex flex-column align-items-end">
+      <div class="total-sum">
+        Сумма к олпате: <span class="price">{{cartService.totalPrice}} $</span>
+      </div>
+      <button class="btn-green" (click)="openOrderModal()">Оплатить</button>
+    </div>
+  </div>
+  <div class="no-items d-flex justify-content-center"
+       *ngIf="!cartService.shoppingCart.length">
+    Здесь ничего нет :(
+  </div>
 </div>
+

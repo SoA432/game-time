@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../core/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -97,10 +98,14 @@ export class HomeComponent implements OnInit {
       active: false,
     }
   ];
-  constructor() {
+
+  public games = [];
+
+  constructor(private apiService: ApiService) {
   }
 
   ngOnInit() {
+    this.games = this.apiService.getAllGames();
   }
 
 }

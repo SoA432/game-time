@@ -2,6 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, takeUntil, tap } from 'rxjs/operators';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
   @ViewChild('search') search: ElementRef;
 
-  constructor() {
+  constructor(public cartService: CartService) {
   }
 
   ngOnInit() {

@@ -16,6 +16,8 @@ import { RatingComponent } from './ui/components/rating/rating.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShoppingCartComponent } from './ui/pages/shopping-cart/shopping-cart.component';
+import { ModalModule, PaginationModule } from 'ngx-bootstrap';
+import { OrderComponent } from './ui/modals/order/order.component';
 
 
 
@@ -30,7 +32,8 @@ import { ShoppingCartComponent } from './ui/pages/shopping-cart/shopping-cart.co
     FilterComponent,
     GameDetailPageComponent,
     RatingComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,8 @@ import { ShoppingCartComponent } from './ui/pages/shopping-cart/shopping-cart.co
     CarouselModule.forRoot(),
     ReactiveFormsModule,
     RatingModule.forRoot(),
+    PaginationModule.forRoot(),
+    ModalModule.forRoot(),
     NgbRatingModule,
     FormsModule
   ],

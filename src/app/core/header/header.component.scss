@@ -13,7 +13,7 @@ header {
 .logo {
   display: inline-flex;
   align-items: center;
-  margin: 20px 20px 20px 20%;
+  margin: 20px 0;
   &:hover {
     cursor: pointer;
   }
@@ -30,7 +30,6 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 10%;
   .search {
     input {
       margin-right: 20px;
@@ -43,6 +42,7 @@ header {
     }
   }
   .cart {
+    position: relative;
     &:hover {
       cursor: pointer;
     }
@@ -61,4 +61,20 @@ header {
 
 .navigation-icon {
   width: 25px;
+}
+
+.cart-quantity {
+  color: white;
+  position: absolute;
+  z-index: 100;
+  width: 15px;
+  height: 15px;
+  background: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 10px;
+  left: 15px;
+  top: 15px;
 }

@@ -1,6 +1,6 @@
 <carousel [noPause]="false" [interval]="sliderInterval">
   <slide *ngFor="let slide of slides; let i = index">
-    <div class="slide-item" [style.backgroundImage]="'url('+ slide.src +')'">
+    <div class="slide-item" [style.backgroundImage]="'url('+ slide +')'">
     </div>
   </slide>
 </carousel>

@@ -1,5 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CartService } from '../../../core/services/cart.service';
+import { FormControl } from '@angular/forms';
+import { GameInterface } from '../../../core/models/game.interface';
+import { CartItemInterface } from '../../../core/models/cart-item.interface';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { OrderComponent } from '../../modals/order/order.component';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,25 +12,39 @@ import { CartService } from '../../../core/services/cart.service';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-
-  shoppingCart:  Map<string, Object>;
-  @ViewChild('input') input: ElementRef;
-  constructor(private cartService: CartService) {
+  bsModalRef: BsModalRef;
+  constructor(public cartService: CartService,
+              private modalService: BsModalService) {
   }
 
   ngOnInit() {
-    this.shoppingCart = this.cartService.shoppingCart;
   }
 
-  public onChange(e, item) {
-    console.log(e.target.value);
+  public incrementQuantity(item: CartItemInterface) {
+    this.cartService.incrementQuantity(item.game.id);
   }
 
-  public incrementQuantity(item) {
-    console.log(this.input.nativeElement);
+  public decrementQuantity(item: CartItemInterface) {
+    item.quantity > 1 ? this.cartService.decrementQuantity(item.game.id) : this.cartService.removeItem(item.game.id);
   }
 
-  public decrementQuantity(item) {
-    console.log(this.input.nativeElement);
+  public removeItem(item: CartItemInterface) {
+    this.cartService.removeItem(item.game.id);
+  }
+
+  public onChange(value: number, item: CartItemInterface) {
+    if (value && value <= 0) {
+      this.removeItem(item);
+    }
+  }
+
+  public openOrderModal() {
+    const initialState = {
+      title: 'Уважаемый, пользователь!',
+      text: 'Ваш заказ №105 находится в статусе Обработки. На вашу электронную почту было отправлено письмо с подробностями.',
+      greeting: 'Спасибо, что выбираете нас!',
+      closeBtnName: 'Вернуться на сайт'
+    };
+    this.bsModalRef = this.modalService.show(OrderComponent, {initialState});
   }
 }
