@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
+import { GameInterface } from '../../../core/models/game.interface';
 
 @Component({
   selector: 'app-home',
@@ -100,12 +101,13 @@ export class HomeComponent implements OnInit {
   ];
 
   public games = [];
-
+  public sliderGames = [];
   constructor(private apiService: ApiService) {
   }
 
   ngOnInit() {
     this.games = this.apiService.getAllGames();
+    this.sliderGames = this.games;
   }
 
 }

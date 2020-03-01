@@ -1,6 +1,6 @@
 <carousel [noPause]="false" [interval]="sliderInterval">
-  <slide *ngFor="let slide of slides; let i = index">
-    <div class="slide-item" [style.backgroundImage]="'url('+ slide +')'">
+  <slide *ngFor="let slide of slides; let i = index" [ngClass]="{'navigation': games}">
+    <div class="slide-item" [style.backgroundImage]="'url('+ slide +')'" (click)="openGame(slide)">
     </div>
   </slide>
 </carousel>
