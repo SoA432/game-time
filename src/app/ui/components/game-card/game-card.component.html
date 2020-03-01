@@ -1,8 +1,10 @@
-<div class="game-card">
-  <img [src]="mockData.imageSrc" alt="">
-  <div class="description">
-    <p>{{ mockData.title }}</p>
-    <p> Цена: {{ mockData.price }} $</p>
-    <button class="btn-green">КУПИТЬ</button>
+<div class="card game-card">
+  <img [src]="game.imgSrc" alt="" class="card-img-top">
+  <div class="card-body description d-flex flex-column align-items-center">
+    <h5 class="card-text">{{ game.title }}</h5>
+  </div>
+  <div class="card-price">
+    <p> Цена: {{ game.price }} $</p>
+    <button class="btn-green">Смотреть</button>
   </div>
 </div>

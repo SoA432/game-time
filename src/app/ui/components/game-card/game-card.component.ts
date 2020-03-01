@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { GameInterface } from '../../../core/models/game.interface';
 
 @Component({
   selector: 'app-game-card',
@@ -6,11 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./game-card.component.scss']
 })
 export class GameCardComponent implements OnInit {
-  @Input() mockData = {
-      imageSrc: '/assets/images/witcher3.png',
-      title: 'The Witcher 3: Wild Hunt',
-      price: '15'
-    };
+  @Input() game: GameInterface;
 
   constructor() {
   }

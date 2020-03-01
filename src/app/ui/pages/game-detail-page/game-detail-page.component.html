@@ -1,5 +1,5 @@
-<app-slider></app-slider>
-<div class="details-page-wrapper">
+<app-slider [gallery]="game.gallery"></app-slider>
+<div class="container">
   <div class="short-info">
     <div class="row short-info-title">
       <div class="col-4">Сведения об игре:</div>
@@ -43,18 +43,18 @@
     <div class="main-content col-9" *ngIf="activeTab === 1">
       <div class="row">
         <div class="col-9 detail-info-block">
-          <h1>{{mockGame.title}}</h1>
-          <span>Жанр: <span class="genre">{{mockGame.genre}}</span></span>
-          <span>Рейтинг: <app-rating [rate]="mockGame.rating" [readonly]="true"></app-rating></span>
+          <h1>{{game.title}}</h1>
+          <span>Жанр: <span class="genre">{{game.genre}}</span></span>
+          <span>Рейтинг: <app-rating [rate]="game.rating" [readonly]="true"></app-rating></span>
         </div>
         <div class="col-3 price-block">
-          <span>Цена: <span class="price">{{mockGame.price}}</span></span>
-          <button class="btn-green">КУПИТЬ</button>
+          <span>Цена: <span class="price">{{game.price}}</span></span>
+          <button class="btn-green" (click)="addToCart()">КУПИТЬ</button>
         </div>
       </div>
       <div class="row game-description">
         <div class="col-12">
-          <p>{{mockGame.description}}</p>
+          <p>{{game.description}}</p>
         </div>
       </div>
     </div>
@@ -118,7 +118,7 @@
         <img src="/assets/images/ori.jpg" alt="">
         <div class="slide-description">
           <div class="slide-title">GameName {{index}}</div>
-          <app-rating [rate]="mockGame.rating" [readonly]="true"></app-rating>
+          <app-rating [rate]="game.rating" [readonly]="true"></app-rating>
           <div class="slide-price">29.99$</div>
         </div>
       </slide>

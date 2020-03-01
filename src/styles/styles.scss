@@ -10,6 +10,10 @@ body {
   border-radius: 6px;
   font-size: $text-medium;
   padding: 5px 10px;
+  &:hover {
+    border: 1px solid $color-green;
+    filter: drop-shadow(2px 2px 3px $color-green);
+  }
 }
 
 .carousel-control {

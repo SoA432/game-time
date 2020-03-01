@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
@@ -6,21 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent implements OnInit {
-
+  @Input() gallery: Array<string>;
   constructor() { }
   public sliderInterval = 5000;
-  public slides = [
-    {
-      src: 'assets/images/diablo3.jpg'
-    },
-    {
-      src: 'assets/images/ori.jpg'
-    },
-    {
-      src: 'assets/images/witcher3.png'
-    }
-  ];
+  public slides = ['assets/images/diablo3.jpg', 'assets/images/ori.jpg', 'assets/images/witcher3.png'];
+
   ngOnInit() {
+    if (this.gallery) { this.slides = this.gallery; }
   }
 
 }

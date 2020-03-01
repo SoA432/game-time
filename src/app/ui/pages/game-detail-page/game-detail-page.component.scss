@@ -1,9 +1,4 @@
 @import "../../../../styles/variables";
-
-.details-page-wrapper {
-  margin: 0 5%;
-}
-
 .short-info-title {
   padding: 30px 0 20px 0;
 }
@@ -74,7 +69,7 @@ slide {
 
 .game-description {
   margin-top: 20px;
-  font-size: $text-semi-big;
+  font-size: $text-medium;
   text-align: justify;
 }
 
@@ -117,7 +112,7 @@ slide {
 
   .text-block {
     .comment-title {
-      font-size: $text-semi-big2;
+      font-size: $text-semi-big;
       font-weight: bold;
     }
     .comment-description {

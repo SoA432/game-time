@@ -1,18 +1,21 @@
-<header>
-  <div class="row header-wrap">
-    <div class="col-6">
-      <div class="logo" routerLink="/">
-        <img src="assets/icons/logo.svg" alt="">
-        <p class="logo-title">Game Time</p>
+<header class="container-fluid header-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="logo" routerLink="/">
+          <img src="assets/icons/logo.svg" alt="">
+          <p class="logo-title">Game Time</p>
+        </div>
       </div>
-    </div>
-    <div class="col-6 side-nav">
-      <div class="search">
-        <input type="text" [hidden]="isSearchHidden" (blur)="showSearch()" #search [formControl]="searchControl">
-        <img src="assets/icons/search.svg" alt="" class="navigation-icon" (click)="showSearch()">
-      </div>
-      <div class="cart">
-        <img src="assets/icons/shopping-cart.svg" alt="" class="navigation-icon">
+      <div class="col-6 side-nav">
+        <div class="search">
+          <input type="text" [hidden]="isSearchHidden" (blur)="showSearch()" #search [formControl]="searchControl">
+          <img src="assets/icons/search.svg" alt="" class="navigation-icon" (click)="showSearch()">
+        </div>
+        <div class="cart" routerLink="/shopping-cart">
+          <img src="assets/icons/shopping-cart.svg" alt="" class="navigation-icon">
+          <span class="cart-quantity" *ngIf="cartService.totalItemsQuantity">{{ cartService.totalItemsQuantity }}</span>
+        </div>
       </div>
     </div>
   </div>
