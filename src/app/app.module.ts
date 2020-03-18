@@ -18,6 +18,7 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShoppingCartComponent } from './ui/pages/shopping-cart/shopping-cart.component';
 import { ModalModule, PaginationModule } from 'ngx-bootstrap';
 import { OrderComponent } from './ui/modals/order/order.component';
+import { LoginComponent } from './ui/modals/login/login.component';
 
 
 
@@ -33,7 +34,8 @@ import { OrderComponent } from './ui/modals/order/order.component';
     GameDetailPageComponent,
     RatingComponent,
     ShoppingCartComponent,
-    OrderComponent
+    OrderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

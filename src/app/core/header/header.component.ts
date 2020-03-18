@@ -3,6 +3,9 @@ import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, takeUntil, tap } from 'rxjs/operators';
 import { CartService } from '../services/cart.service';
+import { BsModalService } from 'ngx-bootstrap';
+import { OrderComponent } from '../../ui/modals/order/order.component';
+import { LoginComponent } from '../../ui/modals/login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +19,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
   @ViewChild('search') search: ElementRef;
 
-  constructor(public cartService: CartService) {
+  constructor(public cartService: CartService,
+              private modalService: BsModalService) {
   }
 
   ngOnInit() {
@@ -37,6 +41,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       setTimeout(() => this.search.nativeElement.focus(), 0);
     }
     console.log('show', this.isSearchHidden);
+  }
+
+  public openLoginModal() {
+    this.modalService.show(LoginComponent, {class: 'login-modal'});
   }
 
   ngOnDestroy(): void {

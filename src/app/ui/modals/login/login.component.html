@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form class="login-form" [formGroup]="loginForm">
+        <div class="form-group">
+          <label for="formGroupExampleInput">Email</label>
+          <div class="email-form">
+            <input [formControl]="emailCtrl" type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="formGroupExampleInput2">Пароль</label>
+          <div class="password-form">
+            <input [formControl]="passwordCtrl" type="password" class="form-control" id="formGroupExampleInput2" placeholder="">
+          </div>
+        </div>
+        <div class="btn-wrap row">
+          <button class="btn btn-green col-5" (click)="login()" [disabled]="!loginForm.valid">Войти</button>
+          <button class="btn btn-green col-5">Регистрация</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

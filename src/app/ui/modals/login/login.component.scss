@@ -1,0 +1,65 @@
+@import "../../../../styles/variables";
+
+.login-form {
+  padding: 5%;
+}
+
+.btn-wrap {
+  display: flex;
+  justify-content: space-around;
+}
+
+label {
+  font-size: $text-small;
+  margin-bottom: 10px;;
+}
+
+input {
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid $color-gray;
+  background: transparent;
+  padding-left: 25px;
+  &:focus {
+    border: none;
+    border-bottom: 1px solid $color-gray;
+    background: transparent;
+  }
+}
+
+.email-form, .password-form {
+  position: relative;
+  &:before {
+    position: absolute;
+    content: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: calc(50% - 6px);
+    left: 4px;
+  }
+}
+
+.email-form {
+  &:before {
+    background: url('/assets/icons/letter.svg') center;
+    background-size: 14px;
+    width: 14px;
+    height: 12px;
+  }
+}
+
+.password-form {
+  &:before {
+    background: url('/assets/icons/lock.svg') center;
+    background-size: 14px;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+input.ng-invalid {
+  box-shadow: 0 0 0 0.2rem rgba($color-red,.25);
+}
+

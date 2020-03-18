@@ -14,10 +14,32 @@ body {
     border: 1px solid $color-green;
     filter: drop-shadow(2px 2px 3px $color-green);
   }
+  &:disabled {
+    opacity: 0.7;
+    &:hover {
+      cursor: default;
+      filter: none;
+    }
+  }
 }
 
 .carousel-control {
   &:hover {
     cursor: pointer;
+  }
+}
+
+.modal-dialog {
+  top: calc(50% - 200px);
+}
+
+.login-modal {
+  margin: 0;
+  left: 60%;
+  top: 15%;
+  width: 35%;
+  max-width: 350px;
+  .modal-content {
+    background-color: rgba(255,255,255, 0.9);
   }
 }
