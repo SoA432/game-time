@@ -1,0 +1,73 @@
+<div class="container register-wrap">
+  <div class="row justify-content-center">
+    <div class="col-8 form-wrap">
+      <form class="login-form" [formGroup]="loginForm">
+        <div class="form-group">
+          <label for="fg-name">Имя</label>
+          <div class="name-form">
+            <input
+              formControlName="name"
+              type="text"
+              class="form-control"
+              id="fg-name"
+              placeholder="Введите Имя"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fg-email">Email</label>
+          <div class="email-form">
+            <input
+              formControlName="email"
+              type="text"
+              class="form-control"
+              id="fg-email"
+              placeholder="Введите Email"
+            />
+          </div>
+        </div>
+        <div class="form-group" formGroupName="passwords">
+          <label for="fg-password">Пароль</label>
+          <div class="password-form">
+            <input
+              formControlName="password"
+              type="password"
+              class="form-control"
+              id="fg-password"
+              placeholder="Введите пароль"
+            />
+          </div>
+          <label for="fg-repeat-password">Пароль</label>
+          <div class="password-form">
+            <input
+              formControlName="confirm_password"
+              type="password"
+              class="form-control"
+              id="fg-repeat-password"
+              placeholder="Повторите пароль"
+            />
+          </div>
+          <div
+            style="color:#ff7355"
+            *ngIf="
+              loginForm.get(['passwords', 'password']).value !=
+                loginForm.get(['passwords', 'confirm_password']).value &&
+                loginForm.get(['passwords', 'confirm_password']).value != null
+            "
+          >
+            Password does not match
+          </div>
+        </div>
+        <div class="btn-wrap row justify-content-start">
+          <button
+            class="btn btn-green col-5"
+            (click)="login()"
+            [disabled]="!loginForm.valid"
+          >
+          Регистрация
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

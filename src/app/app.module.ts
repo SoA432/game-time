@@ -19,6 +19,7 @@ import { ShoppingCartComponent } from './ui/pages/shopping-cart/shopping-cart.co
 import { ModalModule, PaginationModule } from 'ngx-bootstrap';
 import { OrderComponent } from './ui/modals/order/order.component';
 import { LoginComponent } from './ui/modals/login/login.component';
+import { RegisterComponent } from './ui/pages/register/register.component';
 
 
 
@@ -35,7 +36,8 @@ import { LoginComponent } from './ui/modals/login/login.component';
     RatingComponent,
     ShoppingCartComponent,
     OrderComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

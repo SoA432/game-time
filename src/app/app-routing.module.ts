@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './ui/pages/home/home.component';
 import { GameDetailPageComponent } from './ui/pages/game-detail-page/game-detail-page.component';
 import { ShoppingCartComponent } from './ui/pages/shopping-cart/shopping-cart.component';
+import { RegisterComponent } from './ui/pages/register/register.component';
 
 
 const appRoutes: Routes = [
@@ -20,6 +21,10 @@ const appRoutes: Routes = [
   {
     path: 'shopping-cart',
     component: ShoppingCartComponent
+  },
+  {
+    path: 'registration',
+    component: RegisterComponent
   },
   {
     path: '**',
