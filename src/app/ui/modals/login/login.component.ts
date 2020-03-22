@@ -19,17 +19,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {}
 
   loginForm: FormGroup;
-  emailCtrl: FormControl;
+  usernameCtrl: FormControl;
   passwordCtrl: FormControl;
   private destroy$ = new Subject();
 
   ngOnInit(): void {
-    const { email, password } = this.loginService.getLoginData();
+    const { username, password } = this.loginService.getLoginData();
 
-    this.emailCtrl = new FormControl(email ? email : "", [
-      Validators.pattern(
-        "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])"
-      ),
+    this.usernameCtrl = new FormControl(username ? username : "", [
+      Validators.minLength(2),
       Validators.required
     ]);
     this.passwordCtrl = new FormControl(password ? password : "", [
@@ -37,15 +35,14 @@ export class LoginComponent implements OnInit, OnDestroy {
       Validators.required
     ]);
     this.loginForm = new FormGroup({});
-    this.loginForm.addControl("email", this.emailCtrl);
+    this.loginForm.addControl("username", this.usernameCtrl);
     this.loginForm.addControl("password", this.passwordCtrl);
 
-    this.emailCtrl.valueChanges
+    this.usernameCtrl.valueChanges
       .pipe(distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe(
         (value: string) => {
-          console.log(value);
-          this.loginService.setEmail(value);
+          this.loginService.setUsername(value);
         },
         err => console.log(err)
       );
@@ -62,7 +59,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login() {
-    this.loginService.login();
+    const { username, password } = this.loginForm.value;
+    this.loginService.login({username, password}).subscribe(res => {
+      console.log(res)
+      localStorage.setItem('accessToken', res['accessToken'])
+    }, err => console.log(err));
   }
 
   register() {

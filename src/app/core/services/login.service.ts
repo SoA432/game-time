@@ -1,28 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private credentials: { email: string, password: string } = {email: '', password: ''};
+  private credentials: { username: string, password: string } = {username: '', password: ''};
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   getLoginData() {
     return this.credentials;
   }
 
-  setEmail(email: string) {
-    this.credentials.email = email;
+  setUsername(username: string) {
+    this.credentials.username = username;
   }
 
   setPassword(password: string) {
     this.credentials.password = password;
   }
 
-  login() {
-    console.log(this.credentials);
+  login(dto: any) {
+    return this.http.post('/proxy/auth/signin', dto)
+  }
+
+  register(dto: any): Observable<any> {
+    return this.http.post('/proxy/auth/signup', dto)
   }
  }

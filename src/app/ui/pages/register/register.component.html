@@ -6,7 +6,7 @@
           <label for="fg-name">Имя</label>
           <div class="name-form">
             <input
-              formControlName="name"
+              formControlName="username"
               type="text"
               class="form-control"
               id="fg-name"
@@ -37,6 +37,12 @@
               placeholder="Введите пароль"
             />
           </div>
+          <div
+            style="color:#ff7355"
+            *ngIf="loginForm.get('passwords.password').touched && loginForm.get('passwords.password').errors !== null"
+          >
+            Слишком слабый пароль!
+          </div>
           <label for="fg-repeat-password">Пароль</label>
           <div class="password-form">
             <input
@@ -50,18 +56,19 @@
           <div
             style="color:#ff7355"
             *ngIf="
+            loginForm.get('passwords.confirm_password').touched &&
               loginForm.get(['passwords', 'password']).value !=
                 loginForm.get(['passwords', 'confirm_password']).value &&
                 loginForm.get(['passwords', 'confirm_password']).value != null
             "
           >
-            Password does not match
+            Пароли не совпадают!
           </div>
         </div>
         <div class="btn-wrap row justify-content-start">
           <button
             class="btn btn-green col-5"
-            (click)="login()"
+            (click)="register()"
             [disabled]="!loginForm.valid"
           >
           Регистрация

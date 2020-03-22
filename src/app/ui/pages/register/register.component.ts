@@ -8,7 +8,7 @@ import {
   AbstractControl
 } from "@angular/forms";
 import { Subject } from "rxjs";
-import { distinctUntilChanged, takeUntil } from "rxjs/operators";
+import { distinctUntilChanged, takeUntil, switchMap } from "rxjs/operators";
 
 @Component({
   selector: "app-register",
@@ -47,11 +47,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     // ]);
     this.loginForm = new FormGroup({
       email: this.emailCtrl,
-      name: this.nameCtrl,
+      username: this.nameCtrl,
       passwords: this.formBuilder.group(
         {
-          password: ["", [Validators.required, Validators.minLength(6)]],
-          confirm_password: ["", [Validators.required, Validators.minLength(6)]]
+          password: ["", [Validators.required, Validators.minLength(6), Validators.pattern(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)]],
+          confirm_password: ["", [Validators.required, Validators.minLength(6), Validators.pattern(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)]]
         },
         { validator: this.passwordConfirming }
       )
@@ -62,9 +62,16 @@ export class RegisterComponent implements OnInit, OnDestroy {
     // this.loginForm.addControl("repeatPassword", this.repeatPasswordCtrl);
   }
 
-  login() {
-    const { name, email, passwords } = this.loginForm.value;
-    console.log(name, email, passwords.password)
+  register() {
+    const { username, email, passwords } = this.loginForm.value;
+    console.log(username, email, passwords.password)
+    this.loginService.register({username, email, password: passwords.password}).pipe(
+      switchMap((res) => {
+        return this.loginService.login({username, password: passwords.password})
+      })
+    ).subscribe(res => {
+      localStorage.setItem('accessToken', res['accessToken'])
+    }, err => console.log(err));
   }
 
   passwordConfirming(c: AbstractControl): { invalid: boolean } {

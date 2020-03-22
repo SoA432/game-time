@@ -20,6 +20,7 @@ import { ModalModule, PaginationModule } from 'ngx-bootstrap';
 import { OrderComponent } from './ui/modals/order/order.component';
 import { LoginComponent } from './ui/modals/login/login.component';
 import { RegisterComponent } from './ui/pages/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -49,7 +50,8 @@ import { RegisterComponent } from './ui/pages/register/register.component';
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
     NgbRatingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
