@@ -16,6 +16,15 @@
           <img src="assets/icons/shopping-cart.svg" alt="" class="navigation-icon">
           <span class="cart-quantity" *ngIf="cartService.totalItemsQuantity">{{ cartService.totalItemsQuantity }}</span>
         </div>
+        <div class="login" (click)="openLoginModal()" *ngIf="!isAuthorized">
+          <img [src]="'assets/icons/profile.svg'" alt="" class="navigation-icon">
+        </div>
+        <div class="login" *ngIf="isAuthorized">
+          <div class="authorized">
+            {{currentUser}}
+          </div>
+          <img [src]="'assets/icons/avatar_authorized.svg'" alt="" class="navigation-icon">
+        </div>
       </div>
     </div>
   </div>

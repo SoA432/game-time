@@ -36,6 +36,7 @@ button {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  border: none;
   &:focus, &:hover {
     outline: none;
     cursor: pointer;

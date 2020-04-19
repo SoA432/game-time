@@ -5,25 +5,35 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './ui/pages/home/home.component';
 import { GameDetailPageComponent } from './ui/pages/game-detail-page/game-detail-page.component';
 import { ShoppingCartComponent } from './ui/pages/shopping-cart/shopping-cart.component';
+import { RegisterComponent } from './ui/pages/register/register.component';
+import { HomeResolver } from './ui/pages/home/home.resolver';
+import { GameDetailPageResolver } from './ui/pages/game-detail-page/game-detail-page.resolver';
 
 
 const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: HomeComponent
+    component: HomeComponent,
+    resolve: {games: HomeResolver}
   },
   {
     path: 'detail/:id',
-    component: GameDetailPageComponent
+    component: GameDetailPageComponent,
+    resolve: {game: GameDetailPageResolver}
   },
   {
     path: 'shopping-cart',
     component: ShoppingCartComponent
   },
   {
+    path: 'registration',
+    component: RegisterComponent
+  },
+  {
     path: '**',
-    component: HomeComponent
+    component: HomeComponent,
+    resolve: {games: HomeResolver}
   },
 ];
 /**

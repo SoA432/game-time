@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 import { GameInterface } from '../../../core/models/game.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,105 +10,151 @@ import { GameInterface } from '../../../core/models/game.interface';
 })
 export class HomeComponent implements OnInit {
 
-  public filterList = [
+  public sortingOptions = [
+    {
+      name: 'Название A-Z',
+      active: true,
+      type: 'asc'
+    },
+    {
+      name: 'Название Z-A',
+      active: false,
+      type: 'desc'
+    },
+    {
+      name: 'Высокий рейтинг',
+      active: false,
+      type: 'ascRating'
+    },
+    {
+      name: 'Низкий рейтинг',
+      active: false,
+      type: 'descRating'
+    }
+  ]
+
+  public sortingByGenre = [
     {
       name: 'action',
       active: false,
+      type: 'action'
     },
     {
       name: 'fighting',
       active: false,
+      type: 'fighting'
     },
     {
       name: 'indie',
       active: false,
+      type: 'indie'
     },
     {
       name: 'shooter',
       active: false,
+      type: 'shooter'
     },
     {
       name: 'rpg',
       active: false,
+      type: 'rpg'
     }
   ];
-  public filterList2 = [
+
+  public sortingByYear = [
     {
-      name: '11',
+      name: '2015',
       active: false,
+      type: '2015'
     },
     {
-      name: '22',
+      name: '2016',
       active: false,
+      type: '2016'
     },
     {
-      name: '33',
+      name: '2017',
       active: false,
+      type: '2017'
     },
     {
-      name: '44',
+      name: '2018',
       active: false,
+      type: '2018'
     },
     {
-      name: '55',
+      name: '2019',
       active: false,
+      type: '2019'
+    },
+    {
+      name: '2020',
+      active: false,
+      type: '20202020'
     }
   ];
-  public filterList3 = [
+
+  public sortingByPrice = [
     {
-      name: 'dgdsgd',
+      name: 'Меньше 10$',
       active: false,
+      type: 'below10'
     },
     {
-      name: 'bsvcsd',
+      name: 'От 10$ до 30$',
       active: false,
+      type: 'between10and30'
     },
     {
-      name: 'fsddas',
+      name: 'Более 30$',
       active: false,
-    },
-    {
-      name: 'gregre',
-      active: false,
-    },
-    {
-      name: 'gregr',
-      active: false,
-    }
-  ];
-  public filterList4 = [
-    {
-      name: 'action111',
-      active: false,
-    },
-    {
-      name: 'fighting222',
-      active: false,
-    },
-    {
-      name: 'indie333',
-      active: false,
+      type: 'above30'
     },
   ];
-  public filterList5 = [
-    {
-      name: 'actionzcdv',
-      active: false,
-    },
-    {
-      name: 'fightingbgvfds',
-      active: false,
-    }
-  ];
+
 
   public games = [];
   public sliderGames = [];
-  constructor(private apiService: ApiService) {
+  public activeFilters = {
+    main: 'asc',
+    genre: [],
+    year: [],
+    price: []
+  }
+  constructor(private apiService: ApiService, private changeDetector: ChangeDetectorRef, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.games = this.apiService.getAllGames();
-    this.sliderGames = this.games;
+    this.route.data.subscribe((resolver: {games: GameInterface[]}) => {
+      this.games = resolver.games;
+      this.sliderGames = resolver.games;
+      if (resolver.games.length > 5) {
+        this.sliderGames = this.sliderGames.slice(0, 5);
+      }
+      this.changeDetector.detectChanges();
+    }, err => console.log(err));
+  }
+
+  applyNewFilters(list, type) {
+    console.log('list', list, 'type', type)
+    switch(type) {
+      case 'main': 
+        this.activeFilters.main = list;
+        break;
+      case 'genre': 
+        this.activeFilters.genre = list;
+        break;
+      case 'price': 
+      this.activeFilters.price = list;
+        break;
+      case 'year': 
+      this.activeFilters.year = list;
+        break;
+      default: 
+        break;
+    }
+
+    console.log(this.activeFilters);
   }
 
 }
