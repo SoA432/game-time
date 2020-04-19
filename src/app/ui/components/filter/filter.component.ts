@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -20,8 +20,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class FilterComponent implements OnInit {
 
   @Input() title: string;
-  @Input() filterList: Array<{name: string, active: boolean}>;
+  @Input() filterList: Array<{name: string, active: boolean, type: string}>;
   @Input() isAbsolute: boolean = false;
+  @Input() isMultiple: boolean = false;
+  @Output() onFilterChange = new EventEmitter();
   public isFilterOpened: boolean = false;
   public activeFilter: string = '';
   constructor(private _eref: ElementRef) { }
@@ -33,13 +35,23 @@ export class FilterComponent implements OnInit {
     this.isFilterOpened = !this.isFilterOpened;
   }
 
-  public selectFilter(filter: {name: string, active: boolean}) {
+  public selectFilter(filter: {name: string, active: boolean, type: string}) {
     if (this.isAbsolute) {
       this.openFilter();
       this.filterList.forEach(filter => filter.active = false);
       this.activeFilter = filter.name;
     }
     filter.active = !filter.active;
+    if (this.isMultiple) {
+     const filterList = this.filterList.map(filter => {
+       if (filter.active) {
+         return filter.type
+       }
+     }).filter(filter => filter);
+     this.onFilterChange.emit(filterList)
+    } else {
+      this.onFilterChange.emit(filter.type)
+    }
   }
 
   public handleClickOutsideDropdown(e) {

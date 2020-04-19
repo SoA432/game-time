@@ -18,6 +18,11 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShoppingCartComponent } from './ui/pages/shopping-cart/shopping-cart.component';
 import { ModalModule, PaginationModule } from 'ngx-bootstrap';
 import { OrderComponent } from './ui/modals/order/order.component';
+import { LoginComponent } from './ui/modals/login/login.component';
+import { RegisterComponent } from './ui/pages/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeResolver } from './ui/pages/home/home.resolver';
+import { GameDetailPageResolver } from './ui/pages/game-detail-page/game-detail-page.resolver';
 
 
 
@@ -33,7 +38,9 @@ import { OrderComponent } from './ui/modals/order/order.component';
     GameDetailPageComponent,
     RatingComponent,
     ShoppingCartComponent,
-    OrderComponent
+    OrderComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +52,13 @@ import { OrderComponent } from './ui/modals/order/order.component';
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
     NgbRatingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    HomeResolver,
+    GameDetailPageResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
