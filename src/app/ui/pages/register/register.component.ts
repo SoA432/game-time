@@ -9,6 +9,7 @@ import {
 } from "@angular/forms";
 import { Subject } from "rxjs";
 import { distinctUntilChanged, takeUntil, switchMap } from "rxjs/operators";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-register",
@@ -16,7 +17,7 @@ import { distinctUntilChanged, takeUntil, switchMap } from "rxjs/operators";
   styleUrls: ["./register.component.scss"]
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  constructor(private loginService: LoginService, private formBuilder: FormBuilder) {}
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder, private router: Router) {}
 
   loginForm: FormGroup;
   nameCtrl: FormControl;
@@ -70,12 +71,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
         return this.loginService.login({username, password: passwords.password})
       })
     ).subscribe(res => {
-      localStorage.setItem('accessToken', res['accessToken'])
+      console.log(localStorage);
+      this.router.navigate(['']);
     }, err => console.log(err));
   }
 
   passwordConfirming(c: AbstractControl): { invalid: boolean } {
-    if (c.get("password").value !== c.get("confirm_password").value) {
+    if (c.get('password').value !== c.get('confirm_password').value) {
       return { invalid: true };
     }
   }

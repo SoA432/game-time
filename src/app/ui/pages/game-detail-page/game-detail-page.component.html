@@ -1,4 +1,4 @@
-<app-slider [gallery]="game.gallery"></app-slider>
+<app-slider [gallery]="game?.gallery"></app-slider>
 <div class="container">
   <div class="short-info">
     <div class="row short-info-title">
@@ -7,27 +7,27 @@
     <div class="row top-info">
       <div class="col-2">
         <p class="top-info-title">Издатель: </p>
-        <p>Calypso media group</p>
+        <p>{{game?.publisher}}</p>
       </div>
       <div class="col-2">
-        <p class="top-info-title">Издатель: </p>
-        <p>Calypso media group</p>
+        <p class="top-info-title">Разработчик: </p>
+        <p>{{game?.developer}}</p>
       </div>
       <div class="col-2">
-        <p class="top-info-title">Издатель: </p>
-        <p>Calypso media group</p>
+        <p class="top-info-title">Размер: </p>
+        <p>{{game?.size}}</p>
       </div>
       <div class="col-2">
-        <p class="top-info-title">Издатель: </p>
-        <p>Calypso media group</p>
+        <p class="top-info-title">Возраст: </p>
+        <p>{{game?.age}}</p>
       </div>
       <div class="col-2">
-        <p class="top-info-title">Издатель: </p>
-        <p>Calypso media group</p>
+        <p class="top-info-title">Категория: </p>
+        <p>{{game?.category}}</p>
       </div>
       <div class="col-2">
-        <p class="top-info-title">Издатель: </p>
-        <p>Calypso media group</p>
+        <p class="top-info-title">Дата выпуска: </p>
+        <p>{{game?.date | date: 'dd/MM/yyyy'}} </p>
       </div>
     </div>
   </div>
@@ -43,18 +43,18 @@
     <div class="main-content col-9" *ngIf="activeTab === 1">
       <div class="row">
         <div class="col-9 detail-info-block">
-          <h1>{{game.title}}</h1>
-          <span>Жанр: <span class="genre">{{game.genre}}</span></span>
-          <span>Рейтинг: <app-rating [rate]="game.rating" [readonly]="true"></app-rating></span>
+          <h1>{{game?.title}}</h1>
+          <span>Жанр: <span class="genre">{{game?.genre}}</span></span>
+          <span>Рейтинг: <app-rating [rate]="game?.rating" [readonly]="true"></app-rating></span>
         </div>
         <div class="col-3 price-block">
-          <span>Цена: <span class="price">{{game.price}}</span></span>
+          <span>Цена: <span class="price">{{game?.price}}</span></span>
           <button class="btn-green" (click)="addToCart()">КУПИТЬ</button>
         </div>
       </div>
       <div class="row game-description">
         <div class="col-12">
-          <p>{{game.description}}</p>
+          <p>{{game?.description}}</p>
         </div>
       </div>
     </div>
@@ -79,16 +79,6 @@
     </div>
     <!--comments part-->
     <div class="main-content col-9" *ngIf="activeTab === 3">
-      <div class="horizontal-filters">
-        <div class="single-filter">
-          <span>Сортировать по:</span>
-          <app-filter [title]="'test filter'" [filterList]="[{name: 'action111',active: false}]" [isAbsolute]="true"></app-filter>
-        </div>
-        <div class="single-filter">
-          <span>Фильтровать по:</span>
-          <app-filter [title]="'test filter'" [filterList]="[{name: 'svsavsav',active: false}]" [isAbsolute]="true"></app-filter>
-        </div>
-      </div>
       <div class="comment-block" *ngFor="let comment of [1,2,3,4]">
         <div class="row">
           <div class="col-3 avatar-block">
@@ -114,12 +104,12 @@
               [singleSlideOffset]="true"
               [showIndicators]="false"
               [noWrap]="false">
-      <slide *ngFor="let slide of [1,2,3,4]; let index=index">
-        <img src="/assets/images/ori.jpg" alt="">
+      <slide *ngFor="let game of suggestionGames" routerLink="/detail/{{game?.id}}">
+        <img [src]="game?.imgSrc" alt="">
         <div class="slide-description">
-          <div class="slide-title">GameName {{index}}</div>
-          <app-rating [rate]="game.rating" [readonly]="true"></app-rating>
-          <div class="slide-price">29.99$</div>
+          <div class="slide-title">{{ game?.title }}</div>
+          <app-rating [rate]="game?.rating" [readonly]="true"></app-rating>
+          <div class="slide-price">{{game?.price}}$</div>
         </div>
       </slide>
     </carousel>

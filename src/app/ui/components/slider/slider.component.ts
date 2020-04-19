@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { GameInterface } from '../../../core/models/game.interface';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss']
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, OnChanges {
   @Input() gallery: Array<string>;
   @Input() games: GameInterface[];
 
@@ -21,11 +21,18 @@ export class SliderComponent implements OnInit {
     if (this.gallery) {
       this.slides = this.gallery;
     }
+    console.log('>>>>>', this.games);
     if (this.games) {
       this.slides = this.games.map((game: GameInterface) => game.imgSrc);
     }
 
     console.log(this.slides);
+  }
+
+  ngOnChanges() {
+    if (this.gallery) {
+      this.slides = this.gallery;
+    }
   }
 
   public openGame(imgSrc) {

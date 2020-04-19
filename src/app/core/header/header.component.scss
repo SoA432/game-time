@@ -53,6 +53,10 @@ header {
     display: flex;
     align-items: center;
   }
+  .authorized {
+    padding-right: 10px;
+    color: $color-light-green;
+  }
 }
 
 .header-wrap {

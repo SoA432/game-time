@@ -60,9 +60,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     const { username, password } = this.loginForm.value;
-    this.loginService.login({username, password}).subscribe(res => {
-      console.log(res)
-      localStorage.setItem('accessToken', res['accessToken'])
+    this.loginService.login({username, password}).subscribe(() => {
+      this.bsModalRef.hide();
+      this.router.navigate(['']);
     }, err => console.log(err));
   }
 

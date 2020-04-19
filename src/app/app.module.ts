@@ -21,6 +21,8 @@ import { OrderComponent } from './ui/modals/order/order.component';
 import { LoginComponent } from './ui/modals/login/login.component';
 import { RegisterComponent } from './ui/pages/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeResolver } from './ui/pages/home/home.resolver';
+import { GameDetailPageResolver } from './ui/pages/game-detail-page/game-detail-page.resolver';
 
 
 
@@ -51,9 +53,12 @@ import { HttpClientModule } from '@angular/common/http';
     ModalModule.forRoot(),
     NgbRatingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    HomeResolver,
+    GameDetailPageResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

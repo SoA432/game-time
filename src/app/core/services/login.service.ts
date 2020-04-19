@@ -1,14 +1,16 @@
+import { switchMap, catchError } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   private credentials: { username: string, password: string } = {username: '', password: ''};
-
+  public authorized$ = new Subject();
   constructor(private http: HttpClient) {
   }
 
@@ -25,10 +27,17 @@ export class LoginService {
   }
 
   login(dto: any) {
-    return this.http.post('/proxy/auth/signin', dto)
+    return this.http.post('/proxy/auth/signin', dto).pipe(
+      tap(res => {
+        localStorage.setItem('accessToken', res['accessToken']);
+        localStorage.setItem('currentUser', res['username']);
+        localStorage.setItem('authorized', 'yes');
+        this.authorized$.next(true);
+      }),
+    );
   }
 
   register(dto: any): Observable<any> {
-    return this.http.post('/proxy/auth/signup', dto)
+    return this.http.post('/proxy/auth/signup', dto);
   }
  }

@@ -33,7 +33,7 @@
           {{ item.game.price }}$
         </div>
         <div class="col-2 cart-block">
-          {{ item.game.price * item.quantity}}$
+          {{ (item.game.price * item.quantity).toFixed(2) }}$
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
     </a>
     <div class="col-6 d-flex flex-column align-items-end">
       <div class="total-sum">
-        Сумма к олпате: <span class="price">{{cartService.totalPrice}} $</span>
+        Сумма к олпате: <span class="price">{{cartService.totalPrice.toFixed(2)}} $</span>
       </div>
       <button class="btn-green" (click)="openOrderModal()">Оплатить</button>
     </div>

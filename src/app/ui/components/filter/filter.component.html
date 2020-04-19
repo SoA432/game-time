@@ -5,7 +5,10 @@
     <img src="assets/icons/arrow-next.svg" alt="drop-down arrow" *ngIf="isAbsolute">
   </button>
   <div class="filter-list-wrapper">
-    <ul class="filter-list" [hidden]="!isFilterOpened" [@panelInOut]="isFilterOpened" [ngClass]="{'absolute-list': isAbsolute}">
+    <ul class="filter-list" 
+    [hidden]="!isFilterOpened" 
+    [@panelInOut]="isFilterOpened"
+    [ngClass]="{'absolute-list': isAbsolute}">
       <li class="filter-item"
           [ngClass]="{ 'filter-selected': filter.active }"
           *ngFor="let filter of filterList"

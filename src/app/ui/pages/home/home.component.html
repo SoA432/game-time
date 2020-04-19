@@ -1,4 +1,4 @@
-<app-slider [games]="sliderGames"></app-slider>
+<app-slider *ngIf="sliderGames.length" [games]="sliderGames"></app-slider>
 
 <div class="content container">
   <div>
@@ -11,35 +11,35 @@
   </div>
   <div class="games-content">
     <aside class="side-filters col-3">
-      <app-filter [title]="'test filter'" [filterList]="filterList"></app-filter>
-      <app-filter [title]="'test filter'" [filterList]="filterList2"></app-filter>
-      <app-filter [title]="'test filter'" [filterList]="filterList3"></app-filter>
+      <app-filter 
+      [title]="'Жанры'"
+      [filterList]="sortingByGenre"
+      [isMultiple]="true"
+      (onFilterChange)="applyNewFilters($event, 'genre')"></app-filter>
+      <app-filter
+      [title]="'Год'"
+      [filterList]="sortingByYear"
+      [isMultiple]="true"
+      (onFilterChange)="applyNewFilters($event, 'year')"></app-filter>
+      <app-filter
+      [title]="'Цена'"
+      [filterList]="sortingByPrice"
+      [isMultiple]="true"
+      (onFilterChange)="applyNewFilters($event, 'price')"></app-filter>
     </aside>
 
     <main class="main-content col-9">
-      <div class="horizontal-filters">
+      <div class="horizontal-filters justify-content-end">
         <div class="single-filter">
           <span>Сортировать:</span>
-          <app-filter [title]="'test filter'" [filterList]="filterList4" [isAbsolute]="true"></app-filter>
-        </div>
-        <div class="single-filter">
-          <span>Валюта:</span>
-          <app-filter [title]="'test filter'" [filterList]="filterList5" [isAbsolute]="true"></app-filter>
+          <app-filter
+          [title]="sortingOptions[0].name"
+          [filterList]="sortingOptions"
+          [isAbsolute]="true"
+          (onFilterChange)="applyNewFilters($event, 'main')"></app-filter>
         </div>
       </div>
       <div class="cards-wrapper row">
-        <app-game-card
-          class="col-xs-6 col-md-4"
-          *ngFor="let game of games"
-          [game]="game"
-          routerLink="detail/{{game.id}}">
-        </app-game-card>
-        <app-game-card
-          class="col-xs-6 col-md-4"
-          *ngFor="let game of games"
-          [game]="game"
-          routerLink="detail/{{game.id}}">
-        </app-game-card>
         <app-game-card
           class="col-xs-6 col-md-4"
           *ngFor="let game of games"
