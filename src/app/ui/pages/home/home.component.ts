@@ -96,19 +96,19 @@ export class HomeComponent implements OnInit {
 
   public sortingByPrice = [
     {
-      name: 'Меньше 10$',
+      name: 'до 500 грн',
       active: false,
-      type: 'below10'
+      type: 'below500'
     },
     {
-      name: 'От 10$ до 30$',
+      name: 'От 500 грн до 1000 грн',
       active: false,
-      type: 'between10and30'
+      type: 'between500and1000'
     },
     {
-      name: 'Более 30$',
+      name: 'Более 1000 грн',
       active: false,
-      type: 'above30'
+      type: 'above1000'
     },
   ];
 
