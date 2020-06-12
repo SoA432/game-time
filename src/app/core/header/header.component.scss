@@ -64,7 +64,14 @@ header {
 }
 
 .navigation-icon {
-  width: 25px;
+  width: 20px;
+  margin-right: 10px;
+  &.logout {
+    &:hover {
+      cursor: pointer;
+      filter: contrast(200%);
+    }
+  }
 }
 
 .cart-quantity {

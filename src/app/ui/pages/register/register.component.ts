@@ -28,44 +28,32 @@ export class RegisterComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
 
   ngOnInit(): void {
-    this.nameCtrl = new FormControl("", [
+    this.nameCtrl = new FormControl('', [
       Validators.minLength(2),
       Validators.required
     ]);
-    this.emailCtrl = new FormControl("", [
+    this.emailCtrl = new FormControl('', [
       Validators.pattern(
         "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])"
       ),
       Validators.required
     ]);
-    // this.passwordCtrl = new FormControl("", [
-    //   Validators.minLength(6),
-    //   Validators.required
-    // ]);
-    // this.repeatPasswordCtrl = new FormControl("", [
-    //   Validators.minLength(6),
-    //   Validators.required
-    // ]);
+
     this.loginForm = new FormGroup({
       email: this.emailCtrl,
       username: this.nameCtrl,
       passwords: this.formBuilder.group(
         {
-          password: ["", [Validators.required, Validators.minLength(6), Validators.pattern(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)]],
-          confirm_password: ["", [Validators.required, Validators.minLength(6), Validators.pattern(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)]]
+          password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)]],
+          confirm_password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)]]
         },
         { validator: this.passwordConfirming }
       )
     });
-    // this.loginForm.addControl("email", this.emailCtrl);
-    // this.loginForm.addControl("password", this.passwordCtrl);
-    // this.loginForm.addControl("name", this.nameCtrl);
-    // this.loginForm.addControl("repeatPassword", this.repeatPasswordCtrl);
   }
 
   register() {
     const { username, email, passwords } = this.loginForm.value;
-    console.log(username, email, passwords.password)
     this.loginService.register({username, email, password: passwords.password}).pipe(
       switchMap((res) => {
         return this.loginService.login({username, password: passwords.password})
