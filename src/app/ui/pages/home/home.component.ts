@@ -137,6 +137,7 @@ export class HomeComponent implements OnInit {
   public games = [];
   public filteredGames = [];
   public sliderGames = [];
+  public gamesType = 'all';
   public activeFilters = {
     main: 'asc',
     genre: [],
@@ -162,19 +163,19 @@ export class HomeComponent implements OnInit {
   applyNewFilters(list, type) {
     console.log('list', list, 'type', type)
     switch(type) {
-      case 'main': 
+      case 'main':
         this.activeFilters.main = list;
         break;
-      case 'genre': 
+      case 'genre':
         this.activeFilters.genre = list;
         break;
-      case 'price': 
+      case 'price':
       this.activeFilters.price = list;
         break;
-      case 'year': 
+      case 'year':
       this.activeFilters.year = list;
         break;
-      default: 
+      default:
         break;
     }
 
@@ -230,7 +231,36 @@ export class HomeComponent implements OnInit {
         this.filteredGames = this.filteredGames.sort(this.compareRatingDesc)
         this.filteredGames.forEach(game => console.log(game.rating))
         break;
-      default: 
+      default:
+        break;
+    }
+  }
+
+  selectGamesType(type: string) {
+    this.gamesType = type;
+    switch (type) {
+      case 'all':
+        this.filteredGames = this.games;
+        this.activateFilters(this.activeFilters)
+        break;
+      case 'soon':
+        this.filteredGames.filter((game: GameInterface) => {
+          // todo: complete logic
+          // return game.date >= new Date()
+          return true
+        })
+        break;
+      case 'sub':
+        this.filteredGames.filter((game: GameInterface) => {
+          return game.category === 'subscription';
+        })
+        break;
+      case 'sale':
+        this.filteredGames.filter((game: GameInterface) => {
+          return game.price > game.discountPrice;
+        })
+        break;
+      default:
         break;
     }
   }

@@ -3,15 +3,15 @@
 <div class="content container">
   <div>
     <div class="menu-horizontal">
-      <a href="#">Игры</a>
-      <a href="#">Cкоро в продаже</a>
-      <a href="#">Подписки</a>
-      <a href="#">Распродажа</a>
+      <a href="#" (click)="selectGamesType('all')">Игры</a>
+      <a href="#" (click)="selectGamesType('soon')">Cкоро в продаже</a>
+      <a href="#" (click)="selectGamesType('sub')">Подписки</a>
+      <a href="#" (click)="selectGamesType('sale')">Распродажа</a>
     </div>
   </div>
   <div class="games-content">
     <aside class="side-filters col-3">
-      <app-filter 
+      <app-filter
       [title]="'Жанры'"
       [filterList]="sortingByGenre"
       [isMultiple]="true"
