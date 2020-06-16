@@ -42,7 +42,7 @@
       <div class="cards-wrapper row">
         <app-game-card
           class="col-xs-6 col-md-4"
-          *ngFor="let game of games"
+          *ngFor="let game of filteredGames"
           [game]="game"
           routerLink="detail/{{game.id}}">
         </app-game-card>

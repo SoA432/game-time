@@ -48,7 +48,7 @@
           <span>Рейтинг: <app-rating [rate]="game?.rating" [readonly]="true"></app-rating></span>
         </div>
         <div class="col-3 price-block">
-          <span>Цена: <span class="price">{{game?.price}}</span></span>
+          <span>Цена: <span class="price">{{game?.price}} грн</span></span>
           <button class="btn-green" (click)="addToCart()">КУПИТЬ</button>
         </div>
       </div>
@@ -109,7 +109,7 @@
         <div class="slide-description">
           <div class="slide-title">{{ game?.title }}</div>
           <app-rating [rate]="game?.rating" [readonly]="true"></app-rating>
-          <div class="slide-price">{{game?.price}}$</div>
+          <div class="slide-price">{{game?.price}} грн</div>
         </div>
       </slide>
     </carousel>

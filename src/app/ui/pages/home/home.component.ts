@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 import { GameInterface } from '../../../core/models/game.interface';
 import { ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -24,40 +25,60 @@ export class HomeComponent implements OnInit {
     {
       name: 'Высокий рейтинг',
       active: false,
-      type: 'ascRating'
+      type: 'descRating'
     },
     {
       name: 'Низкий рейтинг',
       active: false,
-      type: 'descRating'
+      type: 'ascRating'
     }
   ]
 
   public sortingByGenre = [
     {
-      name: 'action',
+      name: 'Экшн и приключения',
       active: false,
-      type: 'action'
+      type: 'Экшн и приключения'
     },
     {
-      name: 'fighting',
+      name: 'Стрелялки',
       active: false,
-      type: 'fighting'
+      type: 'Стрелялки'
     },
     {
-      name: 'indie',
+      name: 'Борьба',
       active: false,
-      type: 'indie'
+      type: 'Борьба'
     },
     {
-      name: 'shooter',
+      name: 'Ролевые игры',
       active: false,
-      type: 'shooter'
+      type: 'Ролевые игры'
     },
     {
-      name: 'rpg',
+      name: 'Спорт',
       active: false,
-      type: 'rpg'
+      type: 'Спорт'
+    },
+    {
+      name: 'Симуляторы',
+      active: false,
+      type: 'Симуляторы'
+    },
+    {
+      name: 'Стратегии',
+      active: false,
+      type: 'Стратегии'
+    },
+    {
+      name: 'Гонки и авиасимуляторы',
+      active: false,
+      type: 'Гонки и авиасимуляторы'
+    },
+    {
+      name: 'Другие',
+      active: false,
+      type: 'Другие'
     }
   ];
 
@@ -90,30 +111,31 @@ export class HomeComponent implements OnInit {
     {
       name: '2020',
       active: false,
-      type: '20202020'
+      type: '2020'
     }
   ];
 
   public sortingByPrice = [
     {
-      name: 'Меньше 10$',
+      name: 'до 500 грн',
       active: false,
-      type: 'below10'
+      type: 'below500'
     },
     {
-      name: 'От 10$ до 30$',
+      name: 'От 500 грн до 1000 грн',
       active: false,
-      type: 'between10and30'
+      type: 'between500and1000'
     },
     {
-      name: 'Более 30$',
+      name: 'Более 1000 грн',
       active: false,
-      type: 'above30'
+      type: 'above1000'
     },
   ];
 
 
   public games = [];
+  public filteredGames = [];
   public sliderGames = [];
   public activeFilters = {
     main: 'asc',
@@ -127,6 +149,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((resolver: {games: GameInterface[]}) => {
       this.games = resolver.games;
+      this.filteredGames = resolver.games;
+      this.sortGames('asc');
       this.sliderGames = resolver.games;
       if (resolver.games.length > 5) {
         this.sliderGames = this.sliderGames.slice(0, 5);
@@ -154,7 +178,101 @@ export class HomeComponent implements OnInit {
         break;
     }
 
-    console.log(this.activeFilters);
+    this.filteredGames = this.games;
+    this.activateFilters(this.activeFilters)
+  }
+
+  activateFilters(filters: any): void {
+    if (filters.genre.length) {
+      this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
+        return filters.genre.includes(game.genre)
+      })
+    }
+
+    if (filters.year.length) {
+      this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
+        return filters.year.includes(new Date(game.date).getFullYear().toString())
+      })
+    }
+
+    if (filters.price.length) {
+      this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
+        let priceType = '';
+        if (game.price < 500) {
+          priceType = 'below500'
+        }
+        if (game.price >= 500 && game.price < 1000) {
+          priceType = 'between500and1000'
+        }
+        if (game.price > 1000) {
+          priceType = 'above1000'
+        }
+        return filters.price.includes(priceType)
+      })
+    }
+
+    this.sortGames(filters.main)
+  }
+
+  sortGames(sort) {
+    switch (sort) {
+      case 'asc':
+        this.filteredGames = this.filteredGames.sort(this.compareAsc)
+        break;
+      case 'desc':
+        this.filteredGames = this.filteredGames.sort(this.compareDesc)
+        break;
+      case 'ascRating':
+        this.filteredGames = this.filteredGames.sort(this.compareRatingAsc)
+        this.filteredGames.forEach(game => console.log(game.rating))
+        break;
+      case 'descRating':
+        this.filteredGames = this.filteredGames.sort(this.compareRatingDesc)
+        this.filteredGames.forEach(game => console.log(game.rating))
+        break;
+      default: 
+        break;
+    }
+  }
+
+  compareAsc(a, b): number {
+    if (a.title > b.title) {
+      return 1;
+    } else if (a.title < b.title) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+
+  compareDesc(a, b): number {
+    if (a.title < b.title) {
+      return 1;
+    } else if (a.title > b.title) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+
+  compareRatingAsc(a, b): number {
+    if (a.rating > b.rating) {
+      return 1;
+    } else if (a.rating < b.rating) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+
+  compareRatingDesc(a, b): number {
+    if (a.rating < b.rating) {
+      return 1;
+    } else if (a.rating > b.rating) {
+      return -1;
+    } else {
+      return 0;
+    }
   }
 
 }

@@ -30,10 +30,10 @@
           <span (click)="incrementQuantity(item)">+</span>
         </div>
         <div class="col-2 cart-block">
-          {{ item.game.price }}$
+          {{ item.game.price }} грн
         </div>
         <div class="col-2 cart-block">
-          {{ (item.game.price * item.quantity).toFixed(2) }}$
+          {{ (item.game.price * item.quantity).toFixed(2) }} грн
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
     </a>
     <div class="col-6 d-flex flex-column align-items-end">
       <div class="total-sum">
-        Сумма к олпате: <span class="price">{{cartService.totalPrice.toFixed(2)}} $</span>
+        Сумма к олпате: <span class="price">{{cartService.totalPrice.toFixed(2)}} грн</span>
       </div>
       <button class="btn-green" (click)="openOrderModal()">Оплатить</button>
     </div>
