@@ -7,6 +7,7 @@ import { BsModalService } from 'ngx-bootstrap';
 import { OrderComponent } from '../../ui/modals/order/order.component';
 import { LoginComponent } from '../../ui/modals/login/login.component';
 import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(public cartService: CartService,
               private modalService: BsModalService,
               private loginService: LoginService,
-              private changeDetector: ChangeDetectorRef) {
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -60,6 +61,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public openLoginModal() {
     this.modalService.show(LoginComponent, {class: 'login-modal'});
+  }
+
+  public logout() {
+    this.loginService.logout();
+    this.router.navigate(['']);
   }
 
   ngOnDestroy(): void {

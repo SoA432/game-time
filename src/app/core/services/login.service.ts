@@ -37,6 +37,11 @@ export class LoginService {
     );
   }
 
+  logout() {
+    localStorage.clear();
+    this.authorized$.next(false);
+  }
+
   register(dto: any): Observable<any> {
     return this.http.post('/proxy/auth/signup', dto);
   }
