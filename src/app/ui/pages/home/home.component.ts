@@ -238,16 +238,14 @@ export class HomeComponent implements OnInit {
 
   selectGamesType(type: string) {
     this.gamesType = type;
+    this.filteredGames = this.games;
     switch (type) {
       case 'all':
-        this.filteredGames = this.games;
-        this.activateFilters(this.activeFilters)
+        this.activateFilters(this.activeFilters);
         break;
       case 'soon':
         this.filteredGames.filter((game: GameInterface) => {
-          // todo: complete logic
-          // return game.date >= new Date()
-          return true
+          return Date.parse(game.date) >= Date.parse(new Date().toString());
         })
         break;
       case 'sub':
@@ -263,6 +261,7 @@ export class HomeComponent implements OnInit {
       default:
         break;
     }
+    this.activateFilters(this.activeFilters);
   }
 
   compareAsc(a, b): number {
