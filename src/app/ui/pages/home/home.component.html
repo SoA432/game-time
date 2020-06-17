@@ -3,15 +3,15 @@
 <div class="content container">
   <div>
     <div class="menu-horizontal">
-      <a href="#">Игры</a>
-      <a href="#">Cкоро в продаже</a>
-      <a href="#">Подписки</a>
-      <a href="#">Распродажа</a>
+      <a (click)="selectGamesType('all')" [ngClass]="{'tab-active': gamesType === 'all'}">Игры</a>
+      <a (click)="selectGamesType('soon')" [ngClass]="{'tab-active': gamesType === 'soon'}">Cкоро в продаже</a>
+      <a (click)="selectGamesType('sub')" [ngClass]="{'tab-active': gamesType === 'sub'}">Подписки</a>
+      <a (click)="selectGamesType('sale')" [ngClass]="{'tab-active': gamesType === 'sale'}">Распродажа</a>
     </div>
   </div>
   <div class="games-content">
     <aside class="side-filters col-3">
-      <app-filter 
+      <app-filter
       [title]="'Жанры'"
       [filterList]="sortingByGenre"
       [isMultiple]="true"
