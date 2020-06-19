@@ -15,7 +15,7 @@ body {
     filter: drop-shadow(2px 2px 3px $color-green);
   }
   &:disabled {
-    opacity: 0.7;
+    opacity: 0.4;
     &:hover {
       cursor: default;
       filter: none;
@@ -41,5 +41,16 @@ body {
   max-width: 350px;
   .modal-content {
     background-color: rgba(255,255,255, 0.9);
+  }
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: auto;
+  &:hover {
+    white-space: normal;
+    text-overflow: unset;
   }
 }

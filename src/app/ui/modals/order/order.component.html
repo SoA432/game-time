@@ -1,13 +1,71 @@
-<div class="modal-header">
-  <h4 class="modal-title pull-left">{{title}}</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
-  <div class="modal-text">{{text}}</div>
-  <div class="modal-greeting">{{greeting}}</div>
-</div>
-<div class="modal-footer">
-  <button class="btn btn-green" (click)="closeModal()">{{closeBtnName}}</button>
+<div class="row">
+  <div class="col-md-12 order-md-1">
+    <h4 class="mb-3">Оформление заказа</h4>
+    <form class="needs-validation" novalidate [formGroup]="checkoutForm">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstName">Имя</label>
+          <input type="text" class="form-control" id="firstName" placeholder="Введите имя" [formControl]="firstNameCtrl">
+          <div class="invalid-feedback" *ngIf="!firstNameCtrl.valid && firstNameCtrl.touched">
+            Поле "Имя" обязательно к заполнению!
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lastName">Фамилия</label>
+          <input type="text" class="form-control" id="lastName" placeholder="Введите фамилию" [formControl]="lastNameCtrl">
+          <div class="invalid-feedback" *ngIf="!lastNameCtrl.valid && lastNameCtrl.touched">
+            Поле "Фамилия" обязательно к заполнению!
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="number">Телефон</label>
+          <input type="number" class="form-control" id="number" placeholder="Введите номер телефона" [formControl]="phoneCtrl">
+          <div class="invalid-feedback" *ngIf="!phoneCtrl.valid && phoneCtrl.touched">
+            Поле "Телефон" обязательно к заполнению!
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="email">Емейл <span class="text-muted">(Optional)</span></label>
+          <input type="email" class="form-control" id="email" placeholder="Введите электронную почту" [formControl]="emailCtrl">
+          <div class="invalid-feedback" *ngIf="!emailCtrl.valid && emailCtrl.touched">
+            Поле "Емейл" обязательно к заполнению!
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="cc-number">Номер карты</label>
+          <input type="number" class="form-control" id="cc-number" placeholder="Введите номер карты" [formControl]="ccNumberCtrl">
+          <div class="invalid-feedback" *ngIf="!ccNumberCtrl.valid && ccNumberCtrl.touched">
+            Поле "Номер карты" обязательно к заполнению!
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="cc-expiration">Действительна до</label>
+          <input type="text" class="form-control" id="cc-expiration" placeholder="Введите дату" [formControl]="ccExpCtrl">
+          <div class="invalid-feedback" *ngIf="!ccExpCtrl.valid && ccExpCtrl.touched">
+            Поле "Действительна до" обязательно к заполнению!
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="cc-cvv">CVV</label>
+          <input type="text" class="form-control" id="cc-cvv" placeholder="Введите код" [formControl]="ccCvvCtrl">
+          <div class="invalid-feedback" *ngIf="!ccCvvCtrl.valid && (ccCvvCtrl.touched )">
+            Поле "CVV" обязательно к заполнению!
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <div class="d-flex justify-content-end price-wrap">
+        Сумма к оплате: <span>{{ cartService.totalPrice.toFixed(2) }} грн</span>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-green" type="submit" [disabled]="!checkoutForm.valid" (click)="closeModal()">Оформить заказ</button>
+      </div>
+    </form>
+  </div>
 </div>

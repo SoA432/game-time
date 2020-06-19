@@ -23,6 +23,7 @@ import { RegisterComponent } from './ui/pages/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeResolver } from './ui/pages/home/home.resolver';
 import { GameDetailPageResolver } from './ui/pages/game-detail-page/game-detail-page.resolver';
+import { OrderCompleteComponent } from './ui/modals/order-complete/order-complete.component';
 
 
 
@@ -39,6 +40,7 @@ import { GameDetailPageResolver } from './ui/pages/game-detail-page/game-detail-
     RatingComponent,
     ShoppingCartComponent,
     OrderComponent,
+    OrderCompleteComponent,
     LoginComponent,
     RegisterComponent
   ],

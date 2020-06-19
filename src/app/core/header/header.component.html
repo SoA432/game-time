@@ -9,7 +9,28 @@
       </div>
       <div class="col-6 side-nav">
         <div class="search">
+          <!-- [hidden]="isSearchHidden" -->
           <input type="text" [hidden]="isSearchHidden" (blur)="showSearch()" #search [formControl]="searchControl">
+          <!-- <div  class="games-wrap"> -->
+          <div *ngIf="!isSearchHidden && searchedGames.length" class="games-wrap">
+
+            <ng-container *ngIf="searchedGames.length">
+              <div class="game" *ngFor="let game of searchedGames" routerLink="/detail/{{game?.id}}">
+                <div class="card game-card">
+                  <img [src]="game.imgSrc" alt="" class="card-img-top">
+                  <div class="card-body description d-flex flex-column align-items-center">
+                    <h5 class="card-text text-overflow">{{ game.title }}</h5>
+                  </div>
+                  <!-- <img src="https://3dnews.ru/assets/external/illustrations/2018/08/24/974495/OriWotWWallpaper_1920x1080.jpg" alt="" class="card-img-top">
+                  <div class="card-body description d-flex flex-column align-items-center">
+                    <h5 class="card-text text-overflow">Oriф фффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффффф</h5>
+                  </div> -->
+                </div>
+              </div>
+            </ng-container>
+
+
+          </div>
           <img src="assets/icons/search.svg" alt="" class="navigation-icon" (click)="showSearch()">
         </div>
         <div class="cart" routerLink="/shopping-cart">
