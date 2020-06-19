@@ -39,12 +39,6 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public openOrderModal() {
-    const initialState = {
-      title: 'Уважаемый, пользователь!',
-      text: 'Ваш заказ №105 находится в статусе Обработки. На вашу электронную почту было отправлено письмо с подробностями.',
-      greeting: 'Спасибо, что выбираете нас!',
-      closeBtnName: 'Вернуться на сайт'
-    };
-    this.bsModalRef = this.modalService.show(OrderComponent, {initialState});
+    this.bsModalRef = this.modalService.show(OrderComponent, { class: 'checkout-modal' });
   }
 }

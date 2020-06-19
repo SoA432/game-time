@@ -1,13 +1,15 @@
 import { ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, takeUntil, tap } from 'rxjs/operators';
+import { Subject, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, takeUntil, tap, switchMap, map } from 'rxjs/operators';
 import { CartService } from '../services/cart.service';
 import { BsModalService } from 'ngx-bootstrap';
 import { OrderComponent } from '../../ui/modals/order/order.component';
 import { LoginComponent } from '../../ui/modals/login/login.component';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
+import { GameInterface } from '../models/game.interface';
 
 @Component({
   selector: 'app-header',
@@ -22,10 +24,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @ViewChild('search') search: ElementRef;
   public currentUser: string = '';
   public isAuthorized: boolean;
+  public searchedGames: GameInterface[] = [];
   constructor(public cartService: CartService,
               private modalService: BsModalService,
               private loginService: LoginService,
-              private router: Router) {
+              private router: Router,
+              private apiService: ApiService) {
   }
 
   ngOnInit() {
@@ -34,9 +38,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
       debounceTime(400),
       distinctUntilChanged(),
-      filter((val) => val)
-    ).subscribe((value: string) => {
-      console.log(value);
+      switchMap(() => {
+        return this.apiService.getAllGames();
+        // return of(['witcher', 'ori and the blind', 'hollow knight', 'a', 'aaaaa', 'afsafasfas']);
+      }),
+      map((games: GameInterface[]) => {
+        return games.filter((game: GameInterface) => game.title.includes(this.searchControl.value.toString()));
+      })
+      // map((games: []) => {
+      //   return games.filter((game: any) => game.includes(this.searchControl.value.toString()));
+      // })
+    ).subscribe((games: GameInterface[]) => {
+      console.log(games);
+      this.searchedGames = games;
     });
 
     this.isAuthorized = localStorage.getItem('authorized') === 'yes';
@@ -45,9 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
     ).subscribe((value: boolean) => {
       this.isAuthorized = value;
-      console.log(' this.isAuthorized', this.isAuthorized);
       this.currentUser = this.isAuthorized ? localStorage.getItem('currentUser') : '';
-      console.log(' this.currentUser', this.currentUser);
     });
   }
 
@@ -56,7 +68,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (!this.isSearchHidden) {
       setTimeout(() => this.search.nativeElement.focus(), 0);
     }
-    console.log('show', this.isSearchHidden);
   }
 
   public openLoginModal() {
@@ -69,7 +80,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
     this.destroy$.next();
     this.destroy$.unsubscribe();
   }
