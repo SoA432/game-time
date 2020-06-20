@@ -8,7 +8,7 @@ import { GameInterface } from '../../../core/models/game.interface';
 })
 export class GameCardComponent implements OnInit {
   @Input() game: GameInterface;
-
+  @Input() gamesType: string;
   constructor() {
   }
 

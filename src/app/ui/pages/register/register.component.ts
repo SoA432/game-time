@@ -59,7 +59,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
         return this.loginService.login({username, password: passwords.password})
       })
     ).subscribe(res => {
-      console.log(localStorage);
       this.router.navigate(['']);
     }, err => console.log(err));
   }

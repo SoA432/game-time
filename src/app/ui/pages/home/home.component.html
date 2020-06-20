@@ -42,10 +42,14 @@
       <div class="cards-wrapper row">
         <app-game-card
           class="col-xs-6 col-md-4"
-          *ngFor="let game of filteredGames"
+          *ngFor="let game of filteredGames | paginate: { itemsPerPage: 9, currentPage: page }"
           [game]="game"
+          [gamesType]="gamesType"
           routerLink="detail/{{game.id}}">
         </app-game-card>
+      </div>
+      <div class="d-flex justify-content-center">
+        <pagination-controls previousLabel="Назад" nextLabel="Вперед" (pageChange)="page = $event"></pagination-controls>
       </div>
     </main>
   </div>

@@ -21,12 +21,9 @@ export class SliderComponent implements OnInit, OnChanges {
     if (this.gallery) {
       this.slides = this.gallery;
     }
-    console.log('>>>>>', this.games);
     if (this.games) {
       this.slides = this.games.map((game: GameInterface) => game.imgSrc);
     }
-
-    console.log(this.slides);
   }
 
   ngOnChanges() {

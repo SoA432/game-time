@@ -1,15 +1,15 @@
 import { Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { LoginService } from "../../../core/services/login.service";
-import { debounceTime, distinctUntilChanged, takeUntil } from "rxjs/operators";
-import { Subject } from "rxjs";
-import { BsModalRef } from "ngx-bootstrap";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../../../core/services/login.service';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
   constructor(
@@ -26,17 +26,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const { username, password } = this.loginService.getLoginData();
 
-    this.usernameCtrl = new FormControl(username ? username : "", [
+    this.usernameCtrl = new FormControl(username ? username : '', [
       Validators.minLength(2),
       Validators.required
     ]);
-    this.passwordCtrl = new FormControl(password ? password : "", [
+    this.passwordCtrl = new FormControl(password ? password : '', [
       Validators.minLength(6),
       Validators.required
     ]);
     this.loginForm = new FormGroup({});
-    this.loginForm.addControl("username", this.usernameCtrl);
-    this.loginForm.addControl("password", this.passwordCtrl);
+    this.loginForm.addControl('username', this.usernameCtrl);
+    this.loginForm.addControl('password', this.passwordCtrl);
 
     this.usernameCtrl.valueChanges
       .pipe(distinctUntilChanged(), takeUntil(this.destroy$))
@@ -51,14 +51,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe(
         (value: string) => {
-          console.log(value);
           this.loginService.setPassword(value);
         },
         err => console.log(err)
       );
   }
 
-  login() {
+  login(): void {
     const { username, password } = this.loginForm.value;
     this.loginService.login({username, password}).subscribe(() => {
       this.bsModalRef.hide();
@@ -66,12 +65,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     }, err => console.log(err));
   }
 
-  register() {
+  register(): void {
     this.bsModalRef.hide();
     this.router.navigate(['/registration']);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.unsubscribe();
   }

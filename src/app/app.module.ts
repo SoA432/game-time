@@ -16,7 +16,7 @@ import { RatingComponent } from './ui/components/rating/rating.component';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShoppingCartComponent } from './ui/pages/shopping-cart/shopping-cart.component';
-import { ModalModule, PaginationModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 import { OrderComponent } from './ui/modals/order/order.component';
 import { LoginComponent } from './ui/modals/login/login.component';
 import { RegisterComponent } from './ui/pages/register/register.component';
@@ -24,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeResolver } from './ui/pages/home/home.resolver';
 import { GameDetailPageResolver } from './ui/pages/game-detail-page/game-detail-page.resolver';
 import { OrderCompleteComponent } from './ui/modals/order-complete/order-complete.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -51,11 +51,11 @@ import { OrderCompleteComponent } from './ui/modals/order-complete/order-complet
     CarouselModule.forRoot(),
     ReactiveFormsModule,
     RatingModule.forRoot(),
-    PaginationModule.forRoot(),
     ModalModule.forRoot(),
     NgbRatingModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     HomeResolver,
