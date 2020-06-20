@@ -45,12 +45,12 @@ export class FilterComponent implements OnInit {
     if (this.isMultiple) {
      const filterList = this.filterList.map(filter => {
        if (filter.active) {
-         return filter.type
+         return filter.type;
        }
      }).filter(filter => filter);
-     this.onFilterChange.emit(filterList)
+     this.onFilterChange.emit(filterList);
     } else {
-      this.onFilterChange.emit(filter.type)
+      this.onFilterChange.emit(filter.type);
     }
   }
 

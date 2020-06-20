@@ -152,11 +152,11 @@ export class HomeComponent implements OnInit {
     this.route.data.subscribe((resolver: {games: GameInterface[]}) => {
       this.games = resolver.games;
       this.filteredGames = resolver.games;
-      this.sortGames('asc');
       this.sliderGames = resolver.games;
       if (resolver.games.length > 5) {
         this.sliderGames = this.sliderGames.sort((a, b) => 0.5 - Math.random()).slice(0, 5);
       }
+      this.sortGames('asc');
       this.changeDetector.detectChanges();
     }, err => console.log(err));
   }

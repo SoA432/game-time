@@ -51,4 +51,10 @@ export class CartService {
       this.totalItemsQuantity += item.quantity;
     });
   }
+
+  public clear() {
+    this.shoppingCart = [];
+    this.totalItemsQuantity = 0;
+    this.totalPrice = 0;
+  }
 }
