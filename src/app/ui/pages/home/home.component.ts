@@ -143,7 +143,8 @@ export class HomeComponent implements OnInit {
     genre: [],
     year: [],
     price: []
-  }
+  };
+  page: any = 1;
   constructor(private apiService: ApiService, private changeDetector: ChangeDetectorRef, private route: ActivatedRoute) {
   }
 
@@ -154,14 +155,13 @@ export class HomeComponent implements OnInit {
       this.sortGames('asc');
       this.sliderGames = resolver.games;
       if (resolver.games.length > 5) {
-        this.sliderGames = this.sliderGames.slice(0, 5);
+        this.sliderGames = this.sliderGames.sort((a, b) => 0.5 - Math.random()).slice(0, 5);
       }
       this.changeDetector.detectChanges();
     }, err => console.log(err));
   }
 
   applyNewFilters(list, type) {
-    console.log('list', list, 'type', type)
     switch(type) {
       case 'main':
         this.activeFilters.main = list;
@@ -180,56 +180,56 @@ export class HomeComponent implements OnInit {
     }
 
     this.filteredGames = this.games;
-    this.activateFilters(this.activeFilters)
+    this.activateFilters(this.activeFilters);
   }
 
   activateFilters(filters: any): void {
     if (filters.genre.length) {
       this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
         return filters.genre.includes(game.genre)
-      })
+      });
     }
 
     if (filters.year.length) {
       this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
         return filters.year.includes(new Date(game.date).getFullYear().toString())
-      })
+      });
     }
 
     if (filters.price.length) {
       this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
         let priceType = '';
         if (game.price < 500) {
-          priceType = 'below500'
+          priceType = 'below500';
         }
         if (game.price >= 500 && game.price < 1000) {
-          priceType = 'between500and1000'
+          priceType = 'between500and1000';
         }
         if (game.price > 1000) {
-          priceType = 'above1000'
+          priceType = 'above1000';
         }
         return filters.price.includes(priceType)
-      })
+      });
     }
-
-    this.sortGames(filters.main)
+    if ((this.filteredGames.length / 9).toFixed(0) < this.page) {
+      this.page = (this.filteredGames.length / 9).toFixed(0);
+    }
+    this.sortGames(filters.main);
   }
 
   sortGames(sort) {
     switch (sort) {
       case 'asc':
-        this.filteredGames = this.filteredGames.sort(this.compareAsc)
+        this.filteredGames = this.filteredGames.sort(this.compareAsc);
         break;
       case 'desc':
-        this.filteredGames = this.filteredGames.sort(this.compareDesc)
+        this.filteredGames = this.filteredGames.sort(this.compareDesc);
         break;
       case 'ascRating':
-        this.filteredGames = this.filteredGames.sort(this.compareRatingAsc)
-        this.filteredGames.forEach(game => console.log(game.rating))
+        this.filteredGames = this.filteredGames.sort(this.compareRatingAsc);
         break;
       case 'descRating':
-        this.filteredGames = this.filteredGames.sort(this.compareRatingDesc)
-        this.filteredGames.forEach(game => console.log(game.rating))
+        this.filteredGames = this.filteredGames.sort(this.compareRatingDesc);
         break;
       default:
         break;
@@ -249,14 +249,10 @@ export class HomeComponent implements OnInit {
         })
         break;
       case 'sub':
-        this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
-          return game.category === 'subscription';
-        })
+        this.filteredGames = this.filteredGames.filter((game: GameInterface) => game.category.toLocaleLowerCase() === 'subscription');
         break;
       case 'sale':
-        this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
-          return game.price > game.discountPrice;
-        })
+        this.filteredGames = this.filteredGames.filter((game: GameInterface) => game.price > game.discountPrice);
         break;
       default:
         break;

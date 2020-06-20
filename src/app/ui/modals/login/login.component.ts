@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(distinctUntilChanged(), takeUntil(this.destroy$))
       .subscribe(
         (value: string) => {
-          console.log(value);
           this.loginService.setPassword(value);
         },
         err => console.log(err)

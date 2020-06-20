@@ -24,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeResolver } from './ui/pages/home/home.resolver';
 import { GameDetailPageResolver } from './ui/pages/game-detail-page/game-detail-page.resolver';
 import { OrderCompleteComponent } from './ui/modals/order-complete/order-complete.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -56,6 +56,7 @@ import { OrderCompleteComponent } from './ui/modals/order-complete/order-complet
     NgbRatingModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     HomeResolver,

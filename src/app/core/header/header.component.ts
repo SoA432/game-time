@@ -39,20 +39,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       distinctUntilChanged(),
       filter((val) => val),
       switchMap((value) => {
-        console.log('value', value)
         return this.apiService.getAllGames();
-        // return of(['witcher', 'ori and the blind', 'hollow knight', 'a', 'aaaaa', 'afsafasfas']);
       }),
       map((games: GameInterface[]) => {
-        console.log('this.searchControl.value', this.searchControl.value)
         return games.filter((game: GameInterface) =>
           game.title.toLocaleLowerCase().includes(this.searchControl.value.toLocaleLowerCase().toString()));
       })
-      // map((games: []) => {
-      //   return games.filter((game: any) => game.includes(this.searchControl.value.toString()));
-      // })
     ).subscribe((games: GameInterface[]) => {
-      console.log(games);
       this.searchedGames = games;
     });
 

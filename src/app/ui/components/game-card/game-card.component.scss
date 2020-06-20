@@ -29,3 +29,20 @@
 .card-body {
   font-size: 1rem;
 }
+
+.discount {
+  .normal-price {
+    font-weight: bold;
+    text-decoration: line-through;
+    padding-right: 5px;
+  }
+
+  .discount-price {
+    font-weight: bold;
+    color: green;
+  }
+
+  .currency {
+    color: green;
+  }
+}

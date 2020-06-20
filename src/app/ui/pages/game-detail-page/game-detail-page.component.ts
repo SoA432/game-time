@@ -24,11 +24,10 @@ export class GameDetailPageComponent implements OnInit {
       this.game = resolver.game;
     }, err => console.log(err));
 
-    this.apiService.getAllGames().pipe(
-      take(10)
-    ).subscribe((games: GameInterface[]) => {
-        this.suggestionGames = games;
-    })
+    this.apiService.getAllGames()
+      .subscribe((games: GameInterface[]) => {
+        this.suggestionGames = games.sort((a, b) => 0.5 - Math.random()).slice(0, 10);
+    });
   }
 
   public activateTab(index: number) {
