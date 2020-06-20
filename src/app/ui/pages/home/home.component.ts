@@ -244,17 +244,17 @@ export class HomeComponent implements OnInit {
         this.activateFilters(this.activeFilters);
         break;
       case 'soon':
-        this.filteredGames.filter((game: GameInterface) => {
+        this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
           return Date.parse(game.date) >= Date.parse(new Date().toString());
         })
         break;
       case 'sub':
-        this.filteredGames.filter((game: GameInterface) => {
+        this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
           return game.category === 'subscription';
         })
         break;
       case 'sale':
-        this.filteredGames.filter((game: GameInterface) => {
+        this.filteredGames = this.filteredGames.filter((game: GameInterface) => {
           return game.price > game.discountPrice;
         })
         break;

@@ -4,7 +4,6 @@ import { Subject, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, takeUntil, tap, switchMap, map } from 'rxjs/operators';
 import { CartService } from '../services/cart.service';
 import { BsModalService } from 'ngx-bootstrap';
-import { OrderComponent } from '../../ui/modals/order/order.component';
 import { LoginComponent } from '../../ui/modals/login/login.component';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
@@ -38,12 +37,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
       takeUntil(this.destroy$),
       debounceTime(400),
       distinctUntilChanged(),
-      switchMap(() => {
+      filter((val) => val),
+      switchMap((value) => {
+        console.log('value', value)
         return this.apiService.getAllGames();
         // return of(['witcher', 'ori and the blind', 'hollow knight', 'a', 'aaaaa', 'afsafasfas']);
       }),
       map((games: GameInterface[]) => {
-        return games.filter((game: GameInterface) => game.title.includes(this.searchControl.value.toString()));
+        console.log('this.searchControl.value', this.searchControl.value)
+        return games.filter((game: GameInterface) =>
+          game.title.toLocaleLowerCase().includes(this.searchControl.value.toLocaleLowerCase().toString()));
       })
       // map((games: []) => {
       //   return games.filter((game: any) => game.includes(this.searchControl.value.toString()));
@@ -65,9 +68,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public showSearch(): void {
     this.isSearchHidden = !this.isSearchHidden;
-    if (!this.isSearchHidden) {
-      setTimeout(() => this.search.nativeElement.focus(), 0);
-    }
   }
 
   public openLoginModal() {
@@ -77,6 +77,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public logout() {
     this.loginService.logout();
     this.router.navigate(['']);
+  }
+
+  public navigate(id: string) {
+    this.router.navigate([`/detail/${id}`]).then(() => {
+      this.showSearch();
+    });
   }
 
   ngOnDestroy(): void {
