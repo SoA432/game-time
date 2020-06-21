@@ -79,20 +79,19 @@
     </div>
     <!--comments part-->
     <div class="main-content col-9" *ngIf="activeTab === 3">
-      <div class="comment-block" *ngFor="let comment of [1,2,3,4]">
+      <div class="comment-block" *ngFor="let comment of comments">
         <div class="row">
           <div class="col-3 avatar-block">
-            <div class="avatar">Я</div>
-            <div class="nickname">Ярослав</div>
+            <div class="avatar">{{comment.name.slice(0,1)}}</div>
+            <div class="nickname">{{comment.name}}</div>
           </div>
           <div class="col-7 text-block">
-            <div class="comment-title">Super!</div>
-            <div class="comment-description">Игра очень понравилась! Геймплей затягивает, графика супер,
-              да и сеттинг, основанный на скандинавской мифологии, шикарен. Любителям дьябло рекомендую.
+            <div class="comment-title">{{comment.title}}</div>
+            <div class="comment-description">{{comment.description}}
             </div>
           </div>
           <div class="col-2 date-block">
-            <div class="comment-date">01.02.2020</div>
+            <div class="comment-date">{{comment.date}}</div>
           </div>
         </div>
       </div>
